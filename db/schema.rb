@@ -43,79 +43,79 @@ ActiveRecord::Schema.define(version: 2024_05_15_072821) do
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id", null: false
-    t.string "post_code", null: false
-    t.string "address", null: false
-    t.string "name", null: false
+    t.integer "customer_id"
+    t.string "post_code"
+    t.string "address"
+    t.string "name"
   end
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email", null: false
-    t.string "encrypted_password", null: false
+    t.string "email"
+    t.string "encrypted_password"
   end
 
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id", null: false
-    t.integer "item_id", null: false
-    t.integer "amount", null: false
+    t.integer "customer_id"
+    t.integer "item_id"
+    t.integer "amount"
   end
 
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.string "post_code", null: false
-    t.string "address", null: false
-    t.string "telephone_number", null: false
-    t.string "email", null: false
-    t.string "enbrypted_password", null: false
-    t.boolean "is_active", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "post_code"
+    t.string "address"
+    t.string "telephone_number"
+    t.string "email"
+    t.string "enbrypted_password"
+    t.boolean "is_active"
   end
 
   create_table "genres", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "name"
   end
 
   create_table "items", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "genre_id", null: false
-    t.string "name", null: false
-    t.text "introduction", null: false
-    t.integer "price", null: false
-    t.boolean "is_active", null: false
+    t.integer "genre_id"
+    t.string "name"
+    t.text "introduction"
+    t.integer "price"
+    t.boolean "is_active"
   end
 
   create_table "order_details", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
-    t.integer "price", null: false
-    t.integer "amount", null: false
-    t.integer "making_sta", null: false
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "price"
+    t.integer "amount"
+    t.integer "making_sta"
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id", null: false
-    t.string "postal_code", null: false
-    t.string "address", null: false
-    t.string "name", null: false
-    t.integer "shipping_cost", null: false
-    t.integer "tolal_payment", null: false
-    t.integer "payment_method", null: false
-    t.integer "status", null: false
+    t.integer "customer_id"
+    t.string "postal_code"
+    t.string "address"
+    t.string "name"
+    t.integer "shipping_cost"
+    t.integer "tolal_payment"
+    t.integer "payment_method"
+    t.integer "status"
   end
 
   create_table "users", force: :cascade do |t|
