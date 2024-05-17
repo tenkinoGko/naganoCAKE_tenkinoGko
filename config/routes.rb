@@ -42,11 +42,7 @@ Rails.application.routes.draw do
     get 'sessions/destroy'
   end
   namespace :public do
-  get 'addresses/index'
-  get 'addresses/edit'
-  get 'addresses/create'
-  get 'addresses/update'
-  get 'addresses/destroy'
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   namespace :public do
   get 'orders/new'
