@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
- 
+
   namespace :public do
     get 'addresses/index'
     get 'addresses/edit'
@@ -41,8 +41,8 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
   end
-  
-   namespace :admins do
+
+   namespace :admin do
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
@@ -50,8 +50,8 @@ Rails.application.routes.draw do
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
   end
-  
-  
+
+
 
   # トップページをルートに設定
   root to: 'public/homes#top'
