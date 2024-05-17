@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -8,30 +9,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :admin do
-    get 'order_details/update'
-    get 'orders/show'
-    get 'orders/update'
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
-    get 'homes/top'
-    get 'sessions/new'
-    get 'sessions/create'
-    get 'sessions/destroy'
-  end
-
+ 
   namespace :public do
     get 'addresses/index'
     get 'addresses/edit'
@@ -63,7 +41,19 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
   end
+  
+   namespace :admins do
+   root :to => 'homes#top'
+   resources :customers, only: [:index, :edit, :update, :show]
+   resources :genres, only: [:index, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update]
+   resources :orders, only: [:show, :update]
+   resources :order_details, only: [:update]
+  end
+  
+  
 
   # トップページをルートに設定
   root to: 'public/homes#top'
+
 end
