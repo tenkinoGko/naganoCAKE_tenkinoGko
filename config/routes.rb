@@ -18,6 +18,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    resources :orders, only: [:index, :show, :update]
    resources :order_details, only: [:update]
   end
+  
+  scope module: 'customers' do
+    resources :items, only: [:show, :index]
+   end
+   
     namespace :public do
   get 'addresses/index'
   get 'addresses/edit'
@@ -55,10 +60,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :public do
   get 'registrations/new'
   get 'registrations/create'
-  end
-  namespace :public do
-  get 'items/index'
-  get 'items/show'
   end
   namespace :public do
   get 'homes/top'
