@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
-    # トップページの処理
+    @genres = Genre.all
+    @items = Item.all
   end
 
   def about
