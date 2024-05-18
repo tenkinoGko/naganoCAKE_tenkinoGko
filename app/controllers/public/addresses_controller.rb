@@ -1,4 +1,4 @@
-class Public::AddressesController < ApplicationController
+class Public::AddressesController < Devise::ConfirmationsController
   def index
     @address = Address.new
     @customer = current_customer
@@ -6,6 +6,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
   end
 
   def create
@@ -22,6 +23,12 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+        redirect_to public_addresses_index(@address)
+    else
+        render "edit"
+    end
   end
 
   def destroy
@@ -33,6 +40,6 @@ class Public::AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:name, :address, :postal_code)
+    params.require(:address).permit(:post_code, :address, :name)
   end
 end
