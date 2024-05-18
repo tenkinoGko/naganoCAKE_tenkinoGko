@@ -46,18 +46,10 @@ Rails.application.routes.draw do
    resources :order_details, only: [:update]
   end
 
-  
+
   scope module: 'customers' do
     resources :items, only: [:show, :index]
    end
-
-  
-end
-
-
-
-
-
+   
   root to: 'public/homes#top'
-
-
+end
