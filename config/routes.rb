@@ -1,27 +1,18 @@
 Rails.application.routes.draw do
 
 
-  devise_for :customers, skip: [:passwords], controllers: {
+ devise_for :customers, skip: [:passwords], controllers: {
+
     registrations: "public/registrations",
     sessions: 'public/sessions'
-  }
+  },path_names: { sign_out: 'sign_out' }
+
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
-  }
+  },path_names: { sign_out: 'sign_out' }
 
-  namespace :admin do
-   root :to => 'homes#top'
-   resources :customers, only: [:index, :edit, :update, :show]
-   resources :genres, only: [:index, :create, :edit, :update]
-   resources :items, only: [:show, :index, :new, :create, :edit, :update]
-   resources :orders, only: [:show, :update]
-   resources :order_details, only: [:update]
-  end
- 
-  scope module: 'public' do
-    resources :items, only: [:show, :index]
-  end
+
 
   namespace :public do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
@@ -29,6 +20,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :items, only: [:index, :show]
 
     get 'customers/show', to: 'customers#show', as: :customers_show
     get 'customers/edit', to: 'customers#edit', as: :customers_edit
@@ -43,9 +35,24 @@ Rails.application.routes.draw do
     get 'registrations/new'
     get 'registrations/create'
   end
+
+
+   namespace :admin do
+
+   root :to => 'homes#top'
+   resources :customers, only: [:index, :edit, :update, :show]
+   resources :genres, only: [:index, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update]
+   resources :orders, only: [:show, :update]
+   resources :order_details, only: [:update]
+
+   delete 'sign_out', to: 'sessions#destroy'
+  end
+
+
+  scope module: 'customers' do
+    resources :items, only: [:show, :index]
+   end
+   
   root to: 'public/homes#top'
 end
-
-  
-
-

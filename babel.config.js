@@ -5,6 +5,12 @@ module.exports = function(api) {
   var isProductionEnv = api.env('production')
   var isTestEnv = api.env('test')
 
+module.exports = {
+  presets: [
+    '@babel/preset-env'
+  ],
+};
+
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
       'Please specify a valid `NODE_ENV` or ' +
