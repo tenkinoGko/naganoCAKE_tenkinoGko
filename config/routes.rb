@@ -44,7 +44,6 @@ Rails.application.routes.draw do
 
 
   # トップページをルートに設定
-  root to: 'public/homes#top'
-
+  root to: 'public/homes#top'    
 
 end

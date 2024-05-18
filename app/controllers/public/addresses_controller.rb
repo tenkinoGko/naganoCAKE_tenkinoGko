@@ -20,6 +20,7 @@ class Public::AddressesController < Devise::ConfirmationsController
       flash.now[:alert] = "登録に失敗しました"
       render :index
     end
+
   end
 
   def update
