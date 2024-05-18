@@ -10,40 +10,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
- 
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    get 'addresses/create'
-    get 'addresses/update'
-    get 'addresses/destroy'
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_all'
-    get 'cart_items/create'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/unsubscribe'
-    get 'customers/withdraw'
-    get 'sessions/new'
-    get 'sessions/create'
-    get 'sessions/destroy'
-    get 'registrations/new'
-    get 'registrations/create'
-    resources :items, only: [:index, :show]
-    get 'homes/top'
-    get 'homes/about'
-  end
-  
-  namespace :admins do
+  namespace :admin do
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
@@ -51,55 +18,34 @@ Rails.application.routes.draw do
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
   end
+ 
+  scope module: 'public' do
+    resources :items, only: [:show, :index]
+  end
 
   namespace :public do
-  get 'addresses/index'
-  get 'addresses/edit'
-  get 'addresses/create'
-  get 'addresses/update'
-  get 'addresses/destroy'
+    get 'customers/my_page', to: 'customers#show', as: :customers_my_page
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+
+    get 'customers/show', to: 'customers#show', as: :customers_show
+    get 'customers/edit', to: 'customers#edit', as: :customers_edit
+    patch 'customers/update', to: 'customers#update', as: :customers_update
+    get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
+    patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
+
+    get 'homes/top', to: 'homes#top', as: :homes_top
+    get 'homes/about', to: 'homes#about', as: :homes_about
+
+
+    get 'registrations/new'
+    get 'registrations/create'
   end
-  namespace :public do
-  get 'orders/new'
-  get 'orders/confirm'
-  get 'orders/thanks'
-  get 'orders/create'
-  get 'orders/index'
-  get 'orders/show'
-  end
-  namespace :public do
-  get 'cart_items/index'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/create'
-  end
-  namespace :public do
-  get 'customers/show'
-  get 'customers/edit'
-  get 'customers/update'
-  get 'customers/unsubscribe'
-  get 'customers/withdraw'
-  end
-  namespace :public do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  end
-  namespace :public do
-  get 'registrations/new'
-  get 'registrations/create'
-  end
-  namespace :public do
-  get 'items/index'
-  get 'items/show'
-  end
-  namespace :public do
-  get 'homes/top'
-  get 'homes/about'
-  end
+  root to: 'public/homes#top'
 end
 
-  root to: 'public/homes#top'
+  
 
 
