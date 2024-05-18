@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   },path_names: { sign_out: 'sign_out' }
 
-
+  root to: 'public/homes#top'
 
   namespace :public do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
@@ -38,7 +38,6 @@ Rails.application.routes.draw do
 
 
    namespace :admin do
-
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
@@ -50,9 +49,9 @@ Rails.application.routes.draw do
   end
 
 
-  scope module: 'customers' do
+  scope module: 'public' do
     resources :items, only: [:show, :index]
    end
    
-  root to: 'public/homes#top'
+  
 end

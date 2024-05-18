@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(version: 2024_05_16_070057) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "post_code", null: false
+    t.string "postal_code", null: false
     t.string "address", null: false
-    t.string "telephone_number", null: false
+    t.string "phone_number", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 2024_05_16_070057) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
-
   end
 
   create_table "order_details", force: :cascade do |t|
