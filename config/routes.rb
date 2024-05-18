@@ -41,7 +41,7 @@ Rails.application.routes.draw do
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
-   resources :items, only: [:show, :index, :new, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
 
