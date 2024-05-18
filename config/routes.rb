@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+
  devise_for :customers, skip: [:passwords], controllers: {
+
     registrations: "public/registrations",
     sessions: 'public/sessions'
   },path_names: { sign_out: 'sign_out' }
@@ -33,7 +35,9 @@ Rails.application.routes.draw do
     get 'registrations/create'
   end
 
+
    namespace :admin do
+
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
@@ -42,9 +46,18 @@ Rails.application.routes.draw do
    resources :order_details, only: [:update]
   end
 
+  
+  scope module: 'customers' do
+    resources :items, only: [:show, :index]
+   end
+
+  
+end
 
 
-  # トップページをルートに設定
+
+
+
   root to: 'public/homes#top'
 
-end
+
