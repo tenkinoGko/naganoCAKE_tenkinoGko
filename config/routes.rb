@@ -51,6 +51,10 @@ Rails.application.routes.draw do
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
   end
+  
+  scope module: 'customers' do
+    resources :items, only: [:show, :index]
+   end
 
   namespace :public do
   get 'addresses/index'
@@ -89,10 +93,6 @@ Rails.application.routes.draw do
   namespace :public do
   get 'registrations/new'
   get 'registrations/create'
-  end
-  namespace :public do
-  get 'items/index'
-  get 'items/show'
   end
   namespace :public do
   get 'homes/top'
