@@ -53,11 +53,9 @@ Rails.application.routes.draw do
   get 'orders/show'
   end
   namespace :public do
-  get 'cart_items/index'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/create'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+
   end
   namespace :public do
   get 'customers/show'
