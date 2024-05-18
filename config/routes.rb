@@ -1,45 +1,37 @@
 Rails.application.routes.draw do
 
-  devise_for :customers, skip: [:passwords], controllers: {
+ devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
-  }
+  },path_names: { sign_out: 'sign_out' }
+
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
-  }
+  },path_names: { sign_out: 'sign_out' }
+
 
 
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    get 'addresses/create'
-    get 'addresses/update'
-    get 'addresses/destroy'
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_all'
-    get 'cart_items/create'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/unsubscribe'
-    get 'customers/withdraw'
-    get 'sessions/new'
-    get 'sessions/create'
-    get 'sessions/destroy'
+    get 'customers/my_page', to: 'customers#show', as: :customers_my_page
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :items, only: [:index, :show]
+
+    get 'customers/show', to: 'customers#show', as: :customers_show
+    get 'customers/edit', to: 'customers#edit', as: :customers_edit
+    patch 'customers/update', to: 'customers#update', as: :customers_update
+    get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
+    patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
+
+    get 'homes/top', to: 'homes#top', as: :homes_top
+    get 'homes/about', to: 'homes#about', as: :homes_about
+
+
     get 'registrations/new'
     get 'registrations/create'
-    resources :items, only: [:index, :show]
-    get 'homes/top'
-    get 'homes/about'
   end
 
    namespace :admin do
@@ -49,6 +41,8 @@ Rails.application.routes.draw do
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
+
+   delete 'sign_out', to: 'sessions#destroy'
   end
 
 
