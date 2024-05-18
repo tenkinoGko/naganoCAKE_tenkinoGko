@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
-  }
+  },path_names: { sign_out: 'sign_out' }
+
 
 
   namespace :public do
@@ -44,20 +45,14 @@ Rails.application.routes.draw do
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
    resources :orders, only: [:show, :update]
    resources :order_details, only: [:update]
+
+   delete 'sign_out', to: 'sessions#destroy'
   end
 
-  
+
   scope module: 'customers' do
     resources :items, only: [:show, :index]
    end
-
-  
-end
-
-
-
-
-
+   
   root to: 'public/homes#top'
-
-
+end
