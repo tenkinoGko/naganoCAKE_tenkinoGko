@@ -3,11 +3,11 @@
 <table>
   <tr>
     <th><%= f.label :郵便番号(ハイフンなし) %></th>
-    <td><%= f.text_field :postal_code, placeholder:"0000000", id: "customer_postal_code" %></td>
+    <td><%= f.text_field :postal_code, placeholder:"0000000", id:"customer_postal_code" %></td>
   </tr>
   <tr>
     <th><%= f.label :住所 %></th>
-    <td><%= f.text_field :address, placsholder:"住所を入力してください", id: "customer_address" %></td>
+    <td><%= f.text_field :address, placsholder:"住所を入力してください", id:"customer_address" %></td>
   </tr>
   <tr>
     <th><%= f.label :宛名 %></th>
@@ -27,12 +27,14 @@
     </tr>
   </thead>
   <tbody>
+    <% @addresses.each do |address| %>
     <tr>
-      <td><%= customer.postal_code %></td>
-      <td><%= customer.address %></td>
-      <td><%= customer.name %></td>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
       <td><%= link_to "編集する", edit_public_address_path(@address.id), class="btn btn-sm btn-success" %></td>
       <td><%= link_to "削除する", public_address_path(@address.id), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？"　%></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
