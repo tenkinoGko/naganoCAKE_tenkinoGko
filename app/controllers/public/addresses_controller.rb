@@ -1,4 +1,4 @@
-
+class Public::AddressesController < Devise::ConfirmationsController
   def index
   end
 
