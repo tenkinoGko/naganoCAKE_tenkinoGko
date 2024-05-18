@@ -15,7 +15,24 @@
       <li>
         <%= link_to "Logo", root_path %>
       </li>
-    <% if customer_signed_in? %>
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "商品一覧", path %>
+      </li>
+       <li>
+        <%= link_to "会員一覧", _path %>
+      </li>
+       <li>
+        <%= link_to "注文履歴一覧", s_path %>
+      </li>
+       <li>
+        <%= link_to "ジャンル一覧", _path %>
+      </li>
+       <li>
+        <%= link_to "ログアウト", _path, method: :delete %>
+      </li>
+
+    <% elsif customer_signed_in? %>
       <li>
         <%= link_to "マイページ", public_customers_my_page_path %>
       </li>
@@ -26,7 +43,7 @@
         <%= link_to "カート", public_cart_items_path%>
       </li>
        <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+        <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
       </li>
     <% else %>
       <li>
