@@ -17,7 +17,10 @@
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
-      <td></td>
+      <td id="select-form", class="align-middle">
+        <%= form_with model: cart_items, local: true do |cart_item| %>
+        
+      </td>
     </tr>
   </tboby>
 </table>
