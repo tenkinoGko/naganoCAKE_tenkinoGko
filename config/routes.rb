@@ -51,5 +51,4 @@ Rails.application.routes.draw do
   scope module: 'public' do
     resources :items, only: [:show, :index]
    end
-
 end
