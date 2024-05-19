@@ -102,7 +102,11 @@ ActiveRecord::Schema.define(version: 2024_05_16_070057) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+<<<<<<< HEAD
+    t.boolean "is_active", default: true, null: false
+=======
     t.boolean "is_active", null: false
+>>>>>>> 0adb1ef3c09c76bd0a96e709d143fc4be46b5f73
   end
 
   create_table "order_details", force: :cascade do |t|
