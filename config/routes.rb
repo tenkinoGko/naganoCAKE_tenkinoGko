@@ -48,11 +48,8 @@ Rails.application.routes.draw do
    delete 'sign_out', to: 'sessions#destroy'
   end
 
-
   scope module: 'public' do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:show, :index]
    end
-
-
 end
