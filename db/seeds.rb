@@ -5,11 +5,50 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.destroy_all
 
+#管理者
 Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
+)
+#顧客サンプル
+Customer.create!(
+  last_name: '山田',
+  first_name: '太郎',
+  last_name_kana: 'ヤマダ',
+  first_name_kana: 'タロウ',
+  postal_code: '123-4567',
+  address: '東京都渋谷区',
+  phone_number: '090-1234-5678',
+  email: 'sample@example.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+
+Customer.create!(
+  last_name: '佐藤',
+  first_name: '花子',
+  last_name_kana: 'サトウ',
+  first_name_kana: 'ハナコ',
+  postal_code: '111-2222',
+  address: '東京都新宿区',
+  phone_number: '080-1111-2222',
+  email: 'hanako@example.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+
+Customer.create!(
+  last_name: '鈴木',
+  first_name: '次郎',
+  last_name_kana: 'スズキ',
+  first_name_kana: 'ジロウ',
+  postal_code: '333-4444',
+  address: '東京都港区',
+  phone_number: '090-3333-4444',
+  email: 'jiro@example.com',
+  password: 'password',
+  password_confirmation: 'password'
 )
 
 #　商品サンプル
@@ -54,3 +93,4 @@ item = Item.new(
 image_file = File.open(image_path('Sample_item3.jpg'))
 item.image.attach(io: image_file, filename: 'Sample_item3.jpg', content_type: 'image/jpeg')
 item.save!
+
