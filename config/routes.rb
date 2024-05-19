@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 
  devise_for :customers, skip: [:passwords], controllers: {
-
     registrations: "public/registrations",
     sessions: 'public/sessions'
   },path_names: { sign_out: 'sign_out' }
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
   namespace :public do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
 
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :items, only: [:index, :show]
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
    namespace :admin do
    root :to => 'homes#top'
    resources :customers, only: [:index, :edit, :update, :show]
+    resources :orders, only: [:index]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
    resources :orders, only: [:show, :update]
@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'public' do
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:show, :index]
    end
 end
