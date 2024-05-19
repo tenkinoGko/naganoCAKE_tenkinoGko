@@ -51,7 +51,7 @@ Customer.create!(
   password_confirmation: 'password'
 )
 
-#　商品サンプル
+# ジャンルデフォルト値
 Genre.create(name: '和菓子')
 Genre.create(name: '洋菓子')
 Genre.create(name: '果物')
@@ -61,6 +61,7 @@ def image_path(filename)
   Rails.root.join('app/assets/images', filename)
 end
 
+# 商品サンプル
 item = Item.new(
   genre_id: 1,
   name: 'たいやき',
