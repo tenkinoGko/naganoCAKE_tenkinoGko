@@ -41,4 +41,9 @@ Rails.application.routes.draw do
     get 'registrations/new'
     get 'registrations/create'
   end
+
+    devise_scope :end_user do
+    post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
 end
