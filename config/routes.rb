@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
 
 
-    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :items, only: [:index, :show]
 
@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
     get 'registrations/new'
     get 'registrations/create'
+    post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
+    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
   end
 
 
