@@ -1,8 +1,8 @@
-class Public::AddressesController < Devise::ConfirmationsController
+class Public::AddressesController < ApplicationController
   def index
     @address = Address.new
     @customer = current_customer
-    @addresses = @customer.address
+    @addresses = @customer.addresses
   end
 
   def edit
@@ -13,7 +13,7 @@ class Public::AddressesController < Devise::ConfirmationsController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      redirect_to public_addresses_path, notice: "登録に成功しました"
+      redirect_to addresses_path, notice: "登録に成功しました"
     else
       @customer = current_customer
       @address = @customer.address
@@ -26,16 +26,16 @@ class Public::AddressesController < Devise::ConfirmationsController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-        redirect_to public_addresses_index(@address)
+        redirect_to addresses_path(@address)
     else
         render "edit"
     end
   end
 
   def destroy
-    address = Address.find(params[:id])
-    adress.destroy
-    redirect_to public_addresses_path
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to addresses_path
   end
 
   private

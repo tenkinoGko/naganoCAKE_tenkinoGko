@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   namespace :public do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
 
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :items, only: [:index, :show]
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
     get 'homes/top', to: 'homes#top', as: :homes_top
     get 'homes/about', to: 'homes#about', as: :homes_about
 
+    delete 'cart_items/destroy_all', to: 'cart_item#destroy_all'
 
     get 'registrations/new'
     get 'registrations/create'
@@ -50,5 +50,7 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     resources :items, only: [:show, :index]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
    end
 end
