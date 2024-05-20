@@ -24,13 +24,12 @@ Rails.application.routes.draw do
   end
 
   scope module: 'public' do
+    resources :customers, only: [:show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :items, only: [:index, :show]
 
-    get 'customers/show', to: 'customers#show', as: :customers_show
-    get 'customers/edit', to: 'customers#edit', as: :customers_edit
     patch 'customers/update', to: 'customers#update', as: :customers_update
     get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
     patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
