@@ -23,6 +23,12 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     root_path
   end
+  
+  def guest_sign_in
+    end_user = EndUser.guest
+    sign_in end_user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
