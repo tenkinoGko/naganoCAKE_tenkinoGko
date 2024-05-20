@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
 
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :items, only: [:index, :show]
 
     get 'customers/show', to: 'customers#show', as: :customers_show
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'homes/top', to: 'homes#top', as: :homes_top
     get 'homes/about', to: 'homes#about', as: :homes_about
 
-    delete 'cart_items/destroy_all', to: 'cart_item#destroy_all'
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
 
     get 'registrations/new'
     get 'registrations/create'

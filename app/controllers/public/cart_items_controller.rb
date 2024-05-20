@@ -2,7 +2,6 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items = CartItem.all
   end
 
@@ -25,14 +24,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    CartItem.destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
     flash[:success] = "カートの中身を空にしました"
     redirect_back(fallback_location: items_path)
   end
 
   def create
     cart_item = CartItem.new(cart_item_params)
-    cart_item.end_user_id = current_end_user.id
+    cart_item.customer_id = current_customer.id
     cart_item.item_id = cart_item_params[:item_id]
     if CartItem.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
