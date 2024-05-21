@@ -41,6 +41,7 @@ class Public::OrdersController < ApplicationController
 
         render 'new'
     end
+  end
 
   def thanks
   end
