@@ -1,10 +1,10 @@
 class Admin::OrdersController < ApplicationController
 	# before_action :authenticate_admin!
-
-	def index
-		@search = Order.ransack(params[:q])
-    @orders = @search.result.page(params[:page]).per(10)
-	end
+  
+  def index
+    @customer = Customer.find(params[:customer_id])
+    @orders = @customer.orders
+  end
 
 	def show
 		@order = Order.find(params[:id])

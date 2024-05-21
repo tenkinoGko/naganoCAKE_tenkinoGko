@@ -1,15 +1,10 @@
 class Public::OrdersController < ApplicationController
+
   # before_action :authenticate_customer!
 
   def new
     @order = Order.new
     @addresses = current_customer.addresses.all
-  end
-
-  def about
-    @order = Order.new
-    @customer = current_customer
-    @addresses = ShippingAddress.where(customer_id: current_customer.id)
   end
   
 
@@ -22,6 +17,7 @@ class Public::OrdersController < ApplicationController
     # ご自身の住所と配送先住所が選択された場合はhiddenで処理
       # カートの中身を取得
     @cart_items = current_customer.cart_items
+    @order.customer_id = current_customer.id
 
     # 現在memberに登録されている住所であれば
     if params[:order][:address_option] == "0"
@@ -43,14 +39,8 @@ class Public::OrdersController < ApplicationController
     @order.name = params[:order][:addresses_name]
     else
 
-    # 届け先情報に漏れがあればリダイレクト
-    if session[:order][:post_code].presence && session[:order][:address].presence && session[:order][:name].presence
-      redirect_to new_customers_order_path
-    else
-      redirect_to customers_orders_about_path
+        render 'new'
     end
-    end
-  end
 
   def thanks
   end
@@ -68,7 +58,8 @@ class Public::OrdersController < ApplicationController
       @ordered_item.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
       @ordered_item.order_id =  @order.id #注文商品に注文idを紐付け
       @ordered_item.save #注文商品を保存
-    end
+    end #ループ終わり
+
 
     current_customer.cart_items.destroy_all #カートの中身を削除
     redirect_to orders_thanks_path
@@ -87,5 +78,5 @@ class Public::OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
-    
+ 
 end

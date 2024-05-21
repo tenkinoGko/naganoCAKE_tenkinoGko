@@ -13,7 +13,9 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      redirect_to public_addresses_path, notice: "登録に成功しました"
+
+      redirect_to addresses_path, notice: "登録に成功しました"
+
     else
       @customer = current_customer
       @address = @customer.address
@@ -26,20 +28,19 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-        redirect_to public_addresses_index(@address)
+        redirect_to addresses_path(@address)
     else
         render "edit"
     end
   end
 
   def destroy
-  @address = Address.find(params[:id])
-  @address.destroy
-  redirect_to addresses_path
-end
-
-  private
-
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to addresses_path
+  end
+  
+ private
   def address_params
     params.require(:address).permit(:post_code, :address, :name)
   end

@@ -7,3 +7,4 @@ class CartItem < ApplicationRecord
     item.price * amount
   end
 end
+

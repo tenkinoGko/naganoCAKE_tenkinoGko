@@ -21,6 +21,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items.destroy_all
     flash[:success] = "カートの中身を空にしました"
     redirect_back(fallback_location: items_path)
+
   end
 
   def destroy
@@ -30,7 +31,7 @@ class Public::CartItemsController < ApplicationController
     redirect_back(fallback_location: items_path)
   end
 
-  
+
 
   def create
     cart_item = CartItem.new(cart_item_params)
