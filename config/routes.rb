@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
-
     delete 'sign_out', to: 'sessions#destroy', as: :admin_sign_out
   end
 
@@ -39,6 +38,8 @@ Rails.application.routes.draw do
 
     get 'registrations/new'
     get 'registrations/create'
+    post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
+    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
   end
 
   devise_scope :end_user do
