@@ -1,56 +1,47 @@
 class Public::OrdersController < ApplicationController
   # before_action :authenticate_customer!
 
+  def new
+    @order = Order.new
+    @addresses = current_customer.addresses.all
+  end
+
   def about
     @order = Order.new
     @customer = current_customer
     @addresses = ShippingAddress.where(customer_id: current_customer.id)
   end
+  
 
-  def create
-    customer = current_customer
 
-    # sessionを使ってデータを一時保存
-    session[:order] = Order.new
+  def confirm
+    @order = Order.new(order_params)
+    # @orderはでかい箱で、その中に小さい箱を指定するためにストロングパラメーターを指定している。
 
-    cart_items = current_customer.cart_items
+     # if文を記述して、hidden fieldが作動するようにする。
+    # ご自身の住所と配送先住所が選択された場合はhiddenで処理
+      # カートの中身を取得
+    @cart_items = current_customer.cart_items
 
-    # total_paymentのための計算
-    sum = 0
-    cart_items.each do |cart_item|
-      sum += (cart_item.item.price_without_tax * 1.1).floor * cart_item.quantity
-    end
+    # 現在memberに登録されている住所であれば
+    if params[:order][:address_option] == "0"
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.name = current_customer.last_name + current_customer.first_name
 
-    session[:order][:postage] = 800
-    session[:order][:total_payment] = sum + session[:order][:postage]
-    session[:order][:order_status] = 0
-    session[:order][:customer_id] = current_customer.id
-    # ラジオボタンで選択された支払方法のenum番号を渡している
-    session[:order][:payment_method] = params[:method].to_i
+    # collection.selectであれば
+    elsif params[:order][:address_option] == "1"
+    ship = Address.find(params[:order][:customer_id])
+    @order.postal_code = ship.post_code
+    @order.address = ship.address
+    @order.name = ship.name
 
-    # ラジオボタンで選択された届け先によって条件分岐
-    destination = params[:a_method].to_i
-
-    # 自身の住所が選択時
-    if destination == 0
-      session[:order][:post_code] = customer.postal_code
-      session[:order][:address] = customer.address
-      session[:order][:name] = customer.last_name + customer.first_name
-
-    # 登録済住所が選択時
-    elsif destination == 1
-      address = ShippingAddress.find(params[:shipping_address_for_order])
-      session[:order][:post_code] = address.postal_code
-      session[:order][:address] = address.address
-      session[:order][:name] = address.name 
-
-    # 新しいお届け先が選択時
-    elsif destination == 2
-      session[:new_address] = 2
-      session[:order][:post_code] = params[:post_code]
-      session[:order][:address] = params[:address]
-      session[:order][:name] = params[:name]
-    end
+     # 新規住所入力であれば
+    elsif params[:order][:address_option] = "2"
+    @order.postal_code = params[:order][:addresses_post_code]
+    @order.address = params[:order][:addresses_address]
+    @order.name = params[:order][:addresses_name]
+    else
 
     # 届け先情報に漏れがあればリダイレクト
     if session[:order][:post_code].presence && session[:order][:address].presence && session[:order][:name].presence
@@ -58,39 +49,29 @@ class Public::OrdersController < ApplicationController
     else
       redirect_to customers_orders_about_path
     end
+    end
   end
 
-  def new
-    @cart_items = current_customer.cart_items
+  def thanks
   end
 
-  def complete
-    order = Order.new(session[:order])
-    order.save
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
 
-    if session[:new_address]
-      shipping_address = current_customer.shipping_addresses.new
-      shipping_address.postal_code = order.post_code
-      shipping_address.address = order.address
-      shipping_address.name = order.name
-      shipping_address.save
-      session[:new_address] = nil
+    # ordered_itmemの保存
+    current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
+      @ordered_item = OrderedItem.new #初期化宣言
+      @ordered_item.item_id = cart_item.item_id #商品idを注文商品idに代入
+      @ordered_item.amount = cart_item.amount #商品の個数を注文商品の個数に代入
+      @ordered_item.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
+      @ordered_item.order_id =  @order.id #注文商品に注文idを紐付け
+      @ordered_item.save #注文商品を保存
     end
 
-    # 以下、order_detail作成
-    cart_items = current_customer.cart_items
-    cart_items.each do |cart_item|
-      order_detail = OrderDetail.new
-      order_detail.order_id = order.id
-      order_detail.item_id = cart_item.item.id
-      order_detail.quantity = cart_item.quantity
-      order_detail.making_status = 0
-      order_detail.price = (cart_item.item.price_without_tax * 1.1).floor
-      order_detail.save
-    end
-
-    # 購入後はカート内商品削除
-    cart_items.destroy_all
+    current_customer.cart_items.destroy_all #カートの中身を削除
+    redirect_to orders_thanks_path
   end
 
   def index
@@ -102,15 +83,9 @@ class Public::OrdersController < ApplicationController
     @order_details = @order.order_details
   end
 
-  # private
-  #   def shipping_address_params
-  #     params.require(:shipping_address).permit(:customer_id, :postal_code, :name, :address)
-
-  #   def order_params
-  #      params.require(:order).permit(:customer_id, :postage, :total_payment, :payment_method, :ordr_status, :post_code, :address, :name)
-  #   end
-
-  #   def order_detail_params
-  #      params.require(:order_detail).permit(:order_id, :item_id, :quantity, :making_status, :price)
-  #   end
+  private
+    def order_params
+      params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
+    end
+    
 end

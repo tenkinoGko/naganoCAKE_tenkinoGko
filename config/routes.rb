@@ -16,10 +16,11 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'customers/my_page', to: 'customers#show', as: :customers_my_page
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
 
     
-    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
 
     get 'customers/show', to: 'customers#show', as: :customers_show
     get 'customers/edit', to: 'customers#edit', as: :customers_edit
@@ -33,6 +34,9 @@ Rails.application.routes.draw do
 
     get 'registrations/new'
     get 'registrations/create'
+    post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
+    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
+    
   end
 
 
