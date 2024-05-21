@@ -1,8 +1,10 @@
 class Order < ApplicationRecord
-  belongs_to :customer
 
-  has_many :ordered_items #中間テーブル
-  has_many :items, through: :ordered_items  #注文には商品が多くある
+enum payment_method: ["クレジットカード", "銀行振込"]
+    belongs_to :customer
+    has_many :ordered_items #中間テーブル
+    has_many :items, through: :ordered_items  #注文には商品が多くある
+    has_one_attached :image
 
   enum status: {
      "入金待ち":0,
@@ -12,4 +14,5 @@ class Order < ApplicationRecord
      "発送済み":4
   }
 enum payment_method: ["クレジットカード", "銀行振込"]
+
 end

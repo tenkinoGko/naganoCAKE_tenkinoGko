@@ -1,8 +1,13 @@
 class Public::OrdersController < ApplicationController
+
+  # before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
+  
+
 
   def confirm
     @order = Order.new(order_params)
@@ -10,6 +15,9 @@ class Public::OrdersController < ApplicationController
 
      # if文を記述して、hidden fieldが作動するようにする。
     # ご自身の住所と配送先住所が選択された場合はhiddenで処理
+      # カートの中身を取得
+    @cart_items = current_customer.cart_items
+    @order.customer_id = current_customer.id
 
     # 現在memberに登録されている住所であれば
     if params[:order][:address_option] == "0"
@@ -30,12 +38,9 @@ class Public::OrdersController < ApplicationController
     @order.address = params[:order][:addresses_address]
     @order.name = params[:order][:addresses_name]
     else
+
         render 'new'
     end
-
-    @cart_items = current_customer.cart_items.all
-    @order.customer_id = current_customer.id
-  end
 
   def thanks
   end
@@ -55,18 +60,23 @@ class Public::OrdersController < ApplicationController
       @ordered_item.save #注文商品を保存
     end #ループ終わり
 
+
     current_customer.cart_items.destroy_all #カートの中身を削除
     redirect_to orders_thanks_path
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
     def order_params
-      params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code ,:customer_id,:tolal_payment,:status)
+      params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
+ 
 end

@@ -15,6 +15,14 @@ class Public::CartItemsController < ApplicationController
       redirect_back(fallback_location: items_path)
     end
   end
+  
+  def destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    flash[:success] = "カートの中身を空にしました"
+    redirect_back(fallback_location: items_path)
+
+  end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
@@ -23,12 +31,7 @@ class Public::CartItemsController < ApplicationController
     redirect_back(fallback_location: items_path)
   end
 
-  def destroy_all
-    @cart_items = current_customer.cart_items
-    @cart_items.destroy_all
-    flash[:success] = "カートの中身を空にしました"
-    redirect_back(fallback_location: items_path)
-  end
+
 
   def create
     cart_item = CartItem.new(cart_item_params)

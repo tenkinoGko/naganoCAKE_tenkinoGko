@@ -53,6 +53,13 @@ Customer.create!(
   password_confirmation: 'password'
 )
 
+Address.create!(
+  post_code: '987-6543',
+  address: '東京都新宿区',
+  name: 'サンプル住所',
+  customer_id: Customer.find_by(email: 'sample@example.com').id
+)
+
 # ジャンルデフォルト値
 Genre.create(name: '和菓子')
 Genre.create(name: '洋菓子')

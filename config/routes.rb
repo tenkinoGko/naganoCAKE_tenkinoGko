@@ -12,9 +12,6 @@ Rails.application.routes.draw do
 
   get 'customers/my_page', to: 'public/customers#show', as: :customers_my_page
 
-    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
-    resources :cart_items, only: [:index, :update, :destroy, :create]
-
   namespace :admin do
     root to: 'homes#top'
     resources :customers, only: [:index, :edit, :update, :show]
@@ -22,24 +19,26 @@ Rails.application.routes.draw do
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :destroy]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
+
     delete 'sign_out', to: 'sessions#destroy', as: :admin_sign_out
   end
 
   scope module: 'public' do
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
+    
     resources :customers, only: [:show, :edit, :update]
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show]
+    resources :items, only: [:index, :show]
 
+    
     patch 'customers/update', to: 'customers#update', as: :customers_update
     get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
     patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
 
     get 'homes/top', to: 'homes#top', as: :homes_top
-
-    get 'homes/about', to: 'homes#about', as: :homes_about
-
-    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
+    get 'about', to: 'homes#about', as: :homes_about
 
     get 'registrations/new'
     get 'registrations/create'
@@ -55,9 +54,4 @@ Rails.application.routes.draw do
    resources :addresses
   end
 
-  scope module: 'public' do
-    resources :items, only: [:show, :index]
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-   end
 end
-
