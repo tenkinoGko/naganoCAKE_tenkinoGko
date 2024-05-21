@@ -1,9 +1,8 @@
 class Public::AddressesController < ApplicationController
-  before_action :authenticate_customer!
-  before_action :set_devise_mapping
-
   def index
-    @addresses = current_customer.addresses
+    @address = Address.new
+    @customer = current_customer
+    @addresses = @customer.address
   end
 
   def edit
@@ -11,12 +10,17 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-    @address = current_customer.addresses.new(address_params)
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
-      redirect_to addresses_path, notice: "住所が正常に作成されました。"
+      redirect_to public_addresses_path, notice: "登録に成功しました"
     else
-      render :new
+      @customer = current_customer
+      @address = @customer.address
+      flash.now[:alert] = "登録に失敗しました"
+      render :index
     end
+
   end
 
   def update
@@ -29,16 +33,12 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    @address = current_customer.addresses.find(params[:id])
-    @address.destroy
-    redirect_to addresses_path, notice: "住所が正常に削除されました。"
+    address = Address.find(params[:id])
+    adress.destroy
+    redirect_to public_addresses_path
   end
 
   private
-
-  def set_devise_mapping
-    request.env["devise.mapping"] = Devise.mappings[:customer]
-  end
 
   def address_params
     params.require(:address).permit(:street, :city, :postcode)

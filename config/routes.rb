@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   devise_scope :customer do
-    resources :addresses
+
+   resources :addresses
   end
 end
