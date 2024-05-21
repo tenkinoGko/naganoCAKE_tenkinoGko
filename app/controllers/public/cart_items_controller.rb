@@ -15,7 +15,7 @@ class Public::CartItemsController < ApplicationController
       redirect_back(fallback_location: items_path)
     end
   end
-  
+
   def destroy_all
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
@@ -41,10 +41,10 @@ class Public::CartItemsController < ApplicationController
       cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.update(amount: cart_item.amount)
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     else
       cart_item.save
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     end
   end
 

@@ -25,14 +25,14 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
-    
+    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
     resources :customers, only: [:show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :create, :index, :show]
     resources :items, only: [:index, :show]
 
-    
+
     patch 'customers/update', to: 'customers#update', as: :customers_update
     get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
     patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get 'registrations/new'
     get 'registrations/create'
     post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
-    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
+
   end
 
   devise_scope :end_user do

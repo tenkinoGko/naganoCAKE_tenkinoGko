@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
-  
+
 
 
   def confirm
@@ -38,31 +38,31 @@ class Public::OrdersController < ApplicationController
     @order.address = params[:order][:addresses_address]
     @order.name = params[:order][:addresses_name]
     else
-
         render 'new'
     end
-
-  def thanks
   end
 
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.status = 0#注文ステータスに入金待ちを代入
     @order.save
-
     # ordered_itmemの保存
     current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
-      @ordered_item = OrderedItem.new #初期化宣言
-      @ordered_item.item_id = cart_item.item_id #商品idを注文商品idに代入
-      @ordered_item.amount = cart_item.amount #商品の個数を注文商品の個数に代入
-      @ordered_item.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
-      @ordered_item.order_id =  @order.id #注文商品に注文idを紐付け
-      @ordered_item.save #注文商品を保存
+      @order_detail = OrderDetail.new #初期化宣言
+      @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
+      @order_detail.amount = cart_item.amount #商品の個数を注文商品の個数に代入
+      @order_detail.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
+      @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
+      @order_detail.making_sta = 0#製作ステータスに製作不可を代入
+      @order_detail.save#注文商品を注文履歴に保存
     end #ループ終わり
-
-
     current_customer.cart_items.destroy_all #カートの中身を削除
     redirect_to orders_thanks_path
+  end
+
+  def thanks
+    
   end
 
   def index
@@ -78,5 +78,5 @@ class Public::OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
- 
+
 end
