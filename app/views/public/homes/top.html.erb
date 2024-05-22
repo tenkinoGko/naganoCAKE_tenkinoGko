@@ -1,27 +1,42 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4" style="background-color: orange;">
+    <div class="col-md-4">
       <!--ここにサイドバー-->
       <%= render 'public/items/sidebar' %>
     </div>
-    <div class="col-md-8" style="background-color: pink;">
+    <div class="col-md-8">
       <div class="top-box">
         <p class="top-text">
           ようこそ、ながのCAKEへ！<br>
-           このサイトは、ケーキ販売のECサイトになります。<br>
-           会員でない方も商品の閲覧はできますが、<br>
-           購入には会員登録が必要になります。
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
         </p>
       </div>
-       
-      
-       <div class="cal-md-12" style="background-color: red;">
-         <p>新着商品</p>
-       </div>
+
+      <div class="newitems-title" >
+        <p>新着商品</p>
       </div>
+
+      <div class="newitems-container">
+  <% @items.first(4).each do |item| %>
+    <div class="recommend-product">
+      <% if item.genre.is_active && item.is_active %>
+        <%= link_to item_path(item) do %>
+          <img src="<%= url_for(item.image) %>" alt="<%= item.name %>">
+        <% end %>
+        <p><%= item.name %></p>
+        <p>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>(税込)</p>
+      <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
 
 
+      <div class="all-more">
+       <%= link_to "すべての商品を見る", items_path %>
+      </div>
 
+    </div>
+  </div>
+</div>
