@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   }, path_names: { sign_out: 'sign_out' }
 
   root to: 'public/homes#top'
+  get 'customers/information/edit', to: 'public/customers#edit', as: 'edit_customer_information'
+  patch 'customers/information', to: 'public/customers#update'
 
   get 'customers/my_page', to: 'public/customers#show', as: :customers_my_page
 
