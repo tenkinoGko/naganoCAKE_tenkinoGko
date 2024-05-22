@@ -53,6 +53,25 @@ Customer.create!(
   password_confirmation: 'password'
 )
 
+customer = Customer.find_by(id:1) #顧客のID
+
+# 住所情報を作成
+customer.addresses.create!(
+  address: '東京都渋谷区1-2-3',
+  name: '山田太郎',
+  post_code: '123-4567'
+)
+customer.addresses.create!(
+  address: '東京都新宿区4-5-6',
+  name: '佐藤花子',
+  post_code: '111-2222'
+)
+customer.addresses.create!(
+  address: '東京都港区7-8-9',
+  name: '鈴木次郎',
+  post_code: '333-4444'
+)
+
 # ジャンルデフォルト値
 Genre.create(name: '和菓子')
 Genre.create(name: '洋菓子')
