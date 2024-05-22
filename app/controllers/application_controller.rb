@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
       root_path # 顧客ログイン後のリダイレクト先
     end
   end
+  
+  before_action :set_genres
+
+  private
+
+  def set_genres
+    @genres = Genre.all
+  end
+  
 end
