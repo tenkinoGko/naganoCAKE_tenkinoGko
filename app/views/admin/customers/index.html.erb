@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
-    <h2>会員一覧</h2>
+    <h3 class="px-4" style="background-color: #eee;">会員一覧</h3>
+
 
       <table class="table">
-        <thead class="table-">
-        <tr class="table-secondary">
+        <thead>
+        <tr style="background-color: #eee;">
           <th>会員ID</th>
           <th>氏名</th>
           <th>メールアドレス</th>
@@ -16,7 +17,7 @@
             <td><%= customer.id %></td>
             <td><%= link_to customer.first_name, admin_customer_path(customer) %> <%= link_to customer.last_name, admin_customer_path(customer) %></td>
             <td><%= customer.email %></td>
-           　<td class="<%= customer.is_active ? 'text-green' : 'text-gray' %>"><%= customer.is_active ? '有効' : '退会' %></td>
+            <td><span style="color:<%= customer.is_active ? 'green' : 'gray' %>;"><%= customer.is_active ? "有効":"退会" %></span></td>
           </tr>
         <% end %>
       </table>

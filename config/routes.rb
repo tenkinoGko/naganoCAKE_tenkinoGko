@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   get 'customers/information/edit', to: 'public/customers#edit', as: 'edit_customer_information'
   patch 'customers/information', to: 'public/customers#update'
-  get 'customers/unsubscribe', to: 'public/customers#unsubscribe', as: :customers_unsubscribe
-  patch 'customers/withdraw', to: 'public/customers#withdraw', as: :customers_withdraw
   get 'customers/my_page', to: 'public/customers#show', as: :customers_my_page
 
   namespace :admin do
