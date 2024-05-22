@@ -5,14 +5,15 @@
 
       <h1 class="mb-4">マイページ</h1>
 
-      <h2>登録情報</h2>
-      <%= link_to '編集する', edit_customer_information_path, class: "btn btn-success mb-4" %>
+     <h2>登録情報</h2>
+       <%= link_to '編集する', edit_customer_information_path(@customer), class: "btn btn-success mb-4" %>
+
 
       <div class="table-responsive">
         <table class="table table-bordered">
           <tr>
             <th class="table-secondary w-25">氏名</th>
-            <td><%= @customer.first_name %> <%= @customer.last_name %></td>
+            <td><%= @customer.first_name %> <%= @customer.last_name%></td>
           </tr>
           <tr>
             <th class="table-secondary">カナ</th>
@@ -27,8 +28,8 @@
             <td><%= @customer.address %></td>
           </tr>
            <tr>
-            <th class="table-secondary">郵便番号</th>
-            <td><%= @customer.postal_code %></td>
+            <th class="table-secondary">電話番号</th>
+            <td><%= @customer.phone_number %></td>
           </tr>
           <tr>
             <th class="table-secondary">メールアドレス</th>
