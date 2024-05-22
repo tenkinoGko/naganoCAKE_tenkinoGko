@@ -1,7 +1,7 @@
 <h1>配送先編集</h1>
 
 
-<%= form_with model:address do |f| %>
+<%= form_with model: @address do |f| %>
   <div class="form-group">
     郵便番号(ハイフンなし)　<%= f.text_field :post_code, class: 'form-control address_post_code' %>
   </div>
