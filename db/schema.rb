@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2024_05_16_070057) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.boolean "is_active", default: true
   end
 
   create_table "items", force: :cascade do |t|

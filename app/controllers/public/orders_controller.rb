@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
-  
+
 
   def confirm
     @order = Order.new(order_params)
@@ -37,7 +37,6 @@ class Public::OrdersController < ApplicationController
     @order.address = params[:order][:addresses_address]
     @order.name = params[:order][:addresses_name]
     else
-
         render 'new'
     end
   end
@@ -48,6 +47,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.status = 0#注文ステータスに入金待ちを代入
     @order.save
 
     # order_detailsの保存
@@ -62,7 +62,8 @@ class Public::OrdersController < ApplicationController
 
     current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
-end
+  end
+
 
   def index
     @orders = current_customer.orders
@@ -77,5 +78,5 @@ end
     def order_params
       params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
-  
+
 end
