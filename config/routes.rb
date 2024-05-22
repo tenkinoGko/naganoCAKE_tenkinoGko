@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   }, path_names: { sign_out: 'sign_out' }
 
   root to: 'public/homes#top'
+  get 'customers/information/edit', to: 'public/customers#edit', as: 'edit_customer_information'
+  patch 'customers/information', to: 'public/customers#update'
 
   get 'customers/my_page', to: 'public/customers#show', as: :customers_my_page
 
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: :cart_items_destroy_all
+    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
+    post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
     
     resources :customers, only: [:show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :create]
@@ -42,8 +46,8 @@ Rails.application.routes.draw do
 
     get 'registrations/new'
     get 'registrations/create'
-    post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
-    get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
+    
+    
   end
 
   devise_scope :end_user do
