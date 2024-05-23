@@ -16,7 +16,7 @@
     <br>
     〒<%= current_customer.postal_code %>
       <%= current_customer.address %><br>
-      <%= current_customer.last_name %><%= current_customer.first_name %>
+      <%= current_customer.first_name %><%= current_customer.last_name %>
     <br>
      <%= f.radio_button :address_option, 1 %>
      <%= f.label :order_address, "登録済住所から選択" %>
