@@ -39,9 +39,9 @@ class Public::AddressesController < ApplicationController
     @address.destroy
     redirect_to addresses_path
   end
-  
+
  private
   def address_params
-    params.require(:address).permit(:street, :city, :postcode)
+    params.require(:address).permit(:post_code, :address, :name)
   end
 end
