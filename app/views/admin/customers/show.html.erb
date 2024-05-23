@@ -1,13 +1,18 @@
 <div class="container mt-5">
   <div class="row">
+<<<<<<< HEAD
     <div class="col-md-5 mb-3">
       <h3 class="px-4 text-center" style="background-color: #eee;"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員詳細</h3>
     </div>
    </div>
+=======
+    <h2 class="text-center px-4" style="background-color: #eee;"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員詳細</h2>
+
+>>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
     <div class="pl-5">
       <p class="my-3"><strong>会員ID </strong><span style="margin-left:150px;"><%= @customer.id %></span></p>
       <p class="my-3"><strong>氏名 </strong><span style="margin-left:160px;"><%= @customer.first_name %> <%= @customer.last_name %></span></p>
-      <p class="my-3"><strong>フリガナ </strong><span style="margin-left:130px;"><%= @customer.first_name_kana %> <%= @customer.last_name_kana %></span></p>
+      <p class="my-3"><strong>フリガナ </strong><span style="margin-left:130px;"> <%= @customer.first_name_kana %> <%= @customer.last_name_kana %></span></p>
       <p class="my-3"><strong>郵便番号 </strong><span style="margin-left:130px;"><%= @customer.postal_code %></span></p>
       <p class="my-3"><strong>住所 </strong><span style="margin-left:160px;"><%= @customer.address %></span></p>
       <p class="my-3"><strong>電話番号 </strong><span style="margin-left:125px;"><%= @customer.phone_number %></span></p>
