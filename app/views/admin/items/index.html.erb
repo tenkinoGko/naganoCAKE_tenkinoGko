@@ -1,32 +1,40 @@
-<table>
-  <thead>
-    <tr>
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-10">
+      <h2 style="background-color: #f2f2f2; padding: 10px;">商品一覧</h2>
+    </div>
+    <div class="col-md-2 d-flex align-items-center justify-content-end">
+      <%= link_to "＋", new_admin_item_path, class: "btn btn-lg btn-outline-light bg-light rounded-circle shadow-sm text-secondary", style: "font-size:30px;" %>
+    </div>
+  </div>
 
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
+  <table class="table">
+    <thead class="thead-light">
       <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to item.name, admin_item_path(item) %></td>
-        <td><%= item.price %></td>
-        <td><%= item.genre.name %></td>
-        <td><% if item.is_active == true %>
-        販売可能
-        <% else %>
-        販売不可
-        <% end %>
-        </td> 
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
+    </thead>
 
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+          <td>
+            <% if item.is_active == true %>
+              <span class="text-success">販売可能</span>
+            <% else %>
+              <span class="text-muted">販売不可</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

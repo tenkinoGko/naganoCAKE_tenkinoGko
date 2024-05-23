@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
   end
 
   def update
@@ -15,7 +15,7 @@ class Public::CartItemsController < ApplicationController
       redirect_back(fallback_location: items_path)
     end
   end
-  
+
   def destroy_all
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
