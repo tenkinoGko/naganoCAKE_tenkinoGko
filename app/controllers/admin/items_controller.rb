@@ -33,7 +33,8 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to admin_item_path(@item)
     else
-      render :edit
+      flash[:item_created_error] = "空欄を埋めてください"
+      redirect_to edit_admin_item_path(@item)
     end
   end
 
