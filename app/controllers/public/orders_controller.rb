@@ -7,7 +7,6 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses.all
   end
 
-
   def confirm
     @order = Order.new(order_params)
     # @orderはでかい箱で、その中に小さい箱を指定するためにストロングパラメーターを指定している。
@@ -78,5 +77,4 @@ class Public::OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
-
 end
