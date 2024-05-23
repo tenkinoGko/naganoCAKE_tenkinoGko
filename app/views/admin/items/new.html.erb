@@ -10,8 +10,12 @@
     <div class="col-md-5">
       <%= form_with(model: @item, url: admin_items_path, local: true) do |f| %>
 
-        <h1></h1>
-        
+        <% if flash[:item_created_error] %>
+          <div class="alert alert-danger">
+            <%= flash[:item_created_error] %>
+          </div>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :image, "画像" %>
           <%= f.file_field :image, class: "form-control" %>
@@ -47,10 +51,10 @@
     <%= f.radio_button :is_active, false, class: "form-check-input" %>
     <%= f.label :is_active, "販売停止中", class: "form-check-label" %>
   </div>
-</div> 
+</div>
 
         <%= f.submit "投稿する", class: "btn btn-primary" %>
-        
+
       </div>
     </div>
   
