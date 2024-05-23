@@ -72,10 +72,12 @@ customer.addresses.create!(
   post_code: '333-4444'
 )
 
+
 # ジャンルデフォルト値
 Genre.create(name: '和菓子')
 Genre.create(name: '洋菓子')
-Genre.create(name: '果物')
+Genre.create(name: '駄菓子')
+Genre.create(name: 'その他')
 
 # 画像のパスを取得するヘルパーメソッドの定義
 def image_path(filename)
@@ -106,13 +108,89 @@ item.image.attach(io: image_file, filename: 'Sample_item2.jpg', content_type: 'i
 item.save!
 
 item = Item.new(
-  genre_id: 3,
-  name: 'いちご',
-  introduction: 'ジューシーで甘酸っぱいイチゴの風味を楽しむことができる、人気のフルーツです。',
-  price: 300,
+  genre_id: 2,
+  name: 'ロールケーキ',
+  introduction: 'ふわふわのスポンジ生地と甘いクリームが絶妙なバランスのロールケーキです。お茶うけやパーティーにぴったりです。',
+  price: 500,
   is_active: true
 )
 image_file = File.open(image_path('Sample_item3.jpg'))
 item.image.attach(io: image_file, filename: 'Sample_item3.jpg', content_type: 'image/jpeg')
 item.save!
 
+item = Item.new(
+  genre_id: 2,
+  name: 'クグロフ',
+  introduction: 'バターと卵を主成分とした、ふわふわのケーキです。リッチな風味としっとりとした食感が特徴で、ホイップクリームやフルーツと一緒に楽しむのがおすすめです。',
+  price: 800,
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item4.jpg'))
+item.image.attach(io: image_file, filename: 'Sample_item4.jpg', content_type: 'image/jpeg')
+item.save!
+
+item = Item.new(
+  genre_id: 2,
+  name: '大人のクッキー',
+  introduction: '濃厚なチョコレートとほんのりとしたビターコーヒー風味が絶妙なハーモニーを奏でる大人のためのクッキーです。クランチ感のある食感と上品な甘さが特徴で、ワインや紅茶との相性も抜群です。',
+  price: 300,
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item5.jpg'))
+item.image.attach(io: image_file, filename: 'Sample_item5.jpg', content_type: 'image/jpeg')
+item.save!
+
+item = Item.new(
+  genre_id: 2,
+  name: 'おこちゃまクッキー',
+  introduction: 'サクサクとした食感と甘さが特徴のクッキーです。バターとシュガーの風味が広がり、チョコチップやナッツなどのトッピングでさらなる味わいを楽しむことができます。おやつやお茶うけに最適です。',
+  price: 200,
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item6.jpg'))
+item.image.attach(io: image_file, filename: 'Sample_item6.jpg', content_type: 'image/jpeg')
+item.save!
+
+item = Item.new(
+  genre_id: 1,
+  name: '柏餅',
+  introduction: 'もちもちとした食感が特徴の和菓子、柏餅です。もち米を粉砕して作ったもち生地に、あんこやきな粉を包んでいます。風味豊かな抹茶との相性も抜群です。お茶や抹茶と一緒に楽しんでください。',
+  price: 250,
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item7.jpg'))
+item.image.attach(io: image_file, filename: 'Sample_item7.jpg', content_type: 'image/jpeg')
+item.save!
+
+item = Item.new(
+  genre_id: 3,  # ジャンルIDは適宜変更してください
+  name: 'カラフルチョコ',
+  introduction: '色とりどりのチョコレートが詰まったお菓子です。見た目の美しさと様々な味わいが楽しめるのが特徴です。甘さと苦さ、そしてフルーティな風味が絶妙に組み合わさった一口サイズのチョコレートです。パーティーやギフトにもおすすめです。',
+  price: 200,  # 価格は適宜変更してください
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item8.jpg'))  # カラフルチョコの写真に相当するファイルを指定してください
+item.image.attach(io: image_file, filename: 'Sample_item8.jpg', content_type: 'image/jpeg')  # カラフルチョコの写真に相当するファイル名を指定してください
+item.save!
+
+item = Item.new(
+  genre_id: 3,  # ジャンルIDは適宜変更してください
+  name: 'ラムネ菓子',
+  introduction: '爽やかな味わいが魅力のラムネ菓子です。甘酸っぱい風味とサクサクとした食感が特徴で、一口食べると口の中でとろけていくのが楽しいです。懐かしい味わいと可愛らしい見た目が魅力の一品です。お子さんから大人まで幅広い年齢層に人気です。',
+  price: 200,  # 価格は適宜変更してください
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item9.jpg'))  # ラムネ菓子の写真に相当するファイルを指定してください
+item.image.attach(io: image_file, filename: 'Sample_item9.jpg', content_type: 'image/jpeg')  # ラムネ菓子の写真に相当するファイル名を指定してください
+item.save!
+
+item = Item.new(
+  genre_id: 4,  # ジャンルIDは適宜変更してください
+  name: '金インゴット200g',
+  introduction: '純金製の高級な金インゴットです。上質な純金素材を使用し、独特の光沢と重厚感があります。手のひらに収まるサイズ感で、コレクションやインテリアとしてもおすすめです。金の価値と輝きが詰まった一品です。',
+  price: 2689400,  # 価格は適宜変更してください
+  is_active: true
+)
+image_file = File.open(image_path('Sample_item10.jpg'))  # 金インゴットの写真に相当するファイルを指定してください
+item.image.attach(io: image_file, filename: 'Sample_item10.jpg', content_type: 'image/jpeg')  # 金インゴットの写真に相当するファイル名を指定してください
+item.save!

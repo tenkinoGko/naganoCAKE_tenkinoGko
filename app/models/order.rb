@@ -4,14 +4,6 @@ class Order < ApplicationRecord
   has_many :items, through: :order_details # 注文には商品が多くある
   has_one_attached :image
 
-
-
-    belongs_to :customer
-    has_many :ordered_items #中間テーブル
-    has_many :items, through: :ordered_items  #注文には商品が多くある
-    has_many :order_details
-    has_one_attached :image
-
   enum status: {
      "入金待ち":0,
      "入金確認":1,

@@ -21,7 +21,7 @@
       <div class="newitems-container">
   <% @items.first(4).each do |item| %>
     <div class="recommend-product">
-      <% if item.genre.is_active && item.is_active %>
+      <% if item.is_active %>
         <%= link_to item_path(item) do %>
           <img src="<%= url_for(item.image) %>" alt="<%= item.name %>">
         <% end %>
