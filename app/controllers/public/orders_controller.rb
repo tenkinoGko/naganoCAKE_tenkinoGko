@@ -7,8 +7,6 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses.all
   end
 
-
-
   def confirm
     @order = Order.new(order_params)
     # @orderはでかい箱で、その中に小さい箱を指定するためにストロングパラメーターを指定している。
@@ -38,7 +36,6 @@ class Public::OrdersController < ApplicationController
     @order.address = params[:order][:addresses_address]
     @order.name = params[:order][:addresses_name]
     else
-
         render 'new'
     end
   end
@@ -49,22 +46,23 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.status = 0#注文ステータスに入金待ちを代入
     @order.save
 
-    # ordered_itmemの保存
-    current_customer.cart_items.each do |cart_item| #カートの商品を1つずつ取り出しループ
-      @ordered_item = OrderedItem.new #初期化宣言
-      @ordered_item.item_id = cart_item.item_id #商品idを注文商品idに代入
-      @ordered_item.amount = cart_item.amount #商品の個数を注文商品の個数に代入
-      @ordered_item.price = (cart_item.item.price*1.08).floor #消費税込みに計算して代入
-      @ordered_item.order_id =  @order.id #注文商品に注文idを紐付け
-      @ordered_item.save #注文商品を保存
-    end #ループ終わり
+    # order_detailsの保存
+    current_customer.cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.amount = cart_item.amount
+      @order_detail.price = (cart_item.item.price * 1.08).floor
+      @order_detail.order_id = @order.id
+      @order_detail.save
+    end
 
-
-    current_customer.cart_items.destroy_all #カートの中身を削除
+    current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
+
 
   def index
     @orders = current_customer.orders

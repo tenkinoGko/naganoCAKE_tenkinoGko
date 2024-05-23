@@ -6,7 +6,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(params[:id])
+    @address = current_customer.addresses.find(params[:id])
   end
 
   def create
@@ -26,11 +26,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
-    @address = Address.find(params[:id])
+    @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
         redirect_to addresses_path(@address)
     else
-        render "edit"
+      render :edit
     end
   end
 
@@ -42,6 +42,6 @@ class Public::AddressesController < ApplicationController
   
  private
   def address_params
-    params.require(:address).permit(:post_code, :address, :name)
+    params.require(:address).permit(:street, :city, :postcode)
   end
 end
