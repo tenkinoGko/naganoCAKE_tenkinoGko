@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = current_customer.addresses.all
   end
-  
+
 
 
   def confirm
@@ -41,6 +41,7 @@ class Public::OrdersController < ApplicationController
 
         render 'new'
     end
+  end
 
   def thanks
   end
@@ -78,5 +79,4 @@ class Public::OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:shipping_cost, :payment_method, :name, :address, :postal_code, :customer_id, :total_payment, :status)
     end
- 
 end
