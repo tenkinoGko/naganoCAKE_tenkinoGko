@@ -80,6 +80,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :address, :postal_code, :password, :password_confirmation])
   end
+  
+  def after_sign_up_path_for(resource)
+    customers_my_page_path
+  end
 end
 
 
