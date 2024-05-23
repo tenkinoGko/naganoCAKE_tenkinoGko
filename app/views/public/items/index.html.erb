@@ -1,27 +1,30 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-2">
-  <h1>商品一覧</h1>
-</div>
+      <h1>商品一覧</h1>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= image_tag item.image, size: "400x300" %></td>
-        <td><%= link_to item.name, item_path(item) %></td>
-        <td><%= item.price %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td>
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.image, size: "400x300" %>
+              <% end %>
+            </td>
+            <td><%= link_to item.name, item_path(item) %></td>
+            <td><%= item.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

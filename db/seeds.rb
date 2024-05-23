@@ -72,7 +72,6 @@ customer.addresses.create!(
   post_code: '333-4444'
 )
 
-
 # ジャンルデフォルト値
 Genre.create(name: '和菓子')
 Genre.create(name: '洋菓子')
