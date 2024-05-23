@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
     post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
 
+    resources :genres, only: [:show]
     resources :customers, only: [:show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
