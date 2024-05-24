@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <!--ここにサイドバー-->
+      <!-- ここにサイドバー -->
       <%= render 'public/items/sidebar' %>
     </div>
     <div class="col-md-8">
@@ -14,29 +14,29 @@
         </p>
       </div>
 
-      <div class="newitems-title" >
+      <div class="newitems-title">
         <p>新着商品</p>
       </div>
 
-      <div class="newitems-container">
-  <% @items.first(4).each do |item| %>
-    <div class="recommend-product">
-      <% if item.is_active %>
-        <%= link_to item_path(item) do %>
-          <img src="<%= url_for(item.image) %>" alt="<%= item.name %>">
+      <div class="row newitems-container">
+        <% @items.first(4).each do |item| %>
+          <div class="col-md-3">
+            <div class="recommend-product">
+              <% if item.is_active %>
+               <%= link_to item_path(item) do %>
+                <img src="<%= url_for(item.image) %>" alt="<%= item.name %>" width="130" height="100">
+               <% end %>
+                <p><%= item.name %></p>
+                <p>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>(税込)</p>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-        <p><%= item.name %></p>
-        <p>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>(税込)</p>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-
-      <div class="all-more">
-       <%= link_to "すべての商品を見る", items_path %>
       </div>
 
+      <div class="all-more">
+        <%= link_to ">>すべての商品を見る", items_path %>
+      </div>
     </div>
   </div>
 </div>
