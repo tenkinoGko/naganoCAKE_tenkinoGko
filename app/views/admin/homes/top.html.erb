@@ -1,13 +1,15 @@
-<h1>管理者のトップページ</h1>
-<p>注文履歴一覧</p>
-
-<div>
-  <div>
-    <h2>注文一覧</h2>
-
-    <div>
-      <table>
-        <thead>
+<div class="container mt-5">
+  <div class="row gy-5" style="display: flex; justify-content: space-between;">
+    <div class="col-md-3">
+      <h3 class="px-4" style="background-color: #eee;">注文履歴一覧</h3>
+    </div>
+   </div>
+   
+   
+    <div class="row">
+     <div class="col">
+      <table class="table mt-5">
+        <thead class="thead-light">
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
@@ -20,7 +22,7 @@
           <% customer.orders.each do |order| %>
             <tr>
               <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order) %></td>
-              <td><%= order.customer.first_name + " " + order.customer.last_name %></td>
+              <td><%= order.customer.first_name +  order.customer.last_name %></td>
               <td><%= order.order_details.sum(:amount) %></td>
               <td><%= order.status %></td>
             </tr>
@@ -30,3 +32,18 @@
     </div>
   </div>
 </div>
+
+
+  <div class="container d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next &gt;</a></li>
+        <li class="page-item"><a class="page-link" href="#">Last &gt;&gt;</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
