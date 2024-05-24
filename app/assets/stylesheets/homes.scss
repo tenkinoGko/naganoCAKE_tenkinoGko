@@ -1,3 +1,59 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.main-content {
+  min-height: 500px !important;
+}
+
+
+.recommend-product img {
+  width: 130px; /* 幅を130pxに設定 */
+  height: 100px; /* 高さも100pxに設定 */
+}
+
+.mb-auto {
+  min-height: 80vh; /* 必要に応じて値を調整してください */
+  padding-bottom: 20px; /* フッターと内容が重ならないようにするための余白 */
+}
+
+.top-box {
+  display: flex;
+  align-items: center;  /* 垂直方向の中央揃え */
+  justify-content: center;  /* 水平方向の中央揃え */
+  min-height: 400px;  /* 必要に応じて高さを調整してください */
+  padding: 20px;  /* 任意のパディング */
+  background-color: #f8f9fa;  /* デバッグのための背景色 */
+}
+
+.newitems-title {
+  margin-top: 20px; /* 上にスペースを追加してさらに下げる場合 */
+}
+
+.newitems-container {
+  margin-top: 40px; /* 上にスペースを追加 */
+}
+
+.custom-margin {
+  margin-top: 50px; /* 必要に応じて値を調整 */
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+}
+
+.slide {
+  display: none;
+  text-align: center;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from { opacity: 0.4 }
+  to { opacity: 1 }
+}
