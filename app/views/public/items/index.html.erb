@@ -7,7 +7,7 @@
           <%= render 'public/items/sidebar' %>
         </div>
         <div class="col-md-9">
-          <h2>商品一覧（全<%= @items.count %>件）</h2>
+          <h2>商品一覧 <span style="font-size: smaller;">(全<%= @items.count %>件)</span></h2>
           <div class="row">
             <% @items.each do |item| %>
               <div class="col-md-3 product-item mt-3">
@@ -20,7 +20,7 @@
             <% end %>
           </div>
           
-          <div class="container d-flex justify-content-center">
+          <div class="d-flex justify-content-center">
           <nav aria-label="Page navigation">
             <ul class="pagination">
               <li class="page-item"><a class="page-link" href="#">1</a></li>
