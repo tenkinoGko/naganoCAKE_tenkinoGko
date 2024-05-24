@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td>価格</td>
-      <td><%= @item.price %></td>
+      <td>¥<%= (@item.price * 1.1).floor.to_s(:delimited) %>(税込)</td>
     </tr>
   </tbody>
 </table>
