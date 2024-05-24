@@ -2,7 +2,8 @@ class Public::ItemsController < ApplicationController
    before_action :authenticate_customer!, except: [:index, :show]
 
   def index
-    @items = Item.all
+    @items_all_counter = Item.all
+    @items = Item.all.order(created_at: :desc).page(params[:page]).per(8)
     @genres = Genre.all
   end
 
