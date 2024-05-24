@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'customers/information/edit', to: 'public/customers#edit', as: 'edit_customer_information'
   patch 'customers/information', to: 'public/customers#update'
+  get 'customers/unsubscribe', to: 'public/customers#unsubscribe', as: :customers_unsubscribe
+  patch 'customers/withdraw', to: 'public/customers#withdraw', as: :customers_withdraw
   get 'customers/my_page', to: 'public/customers#show', as: :customers_my_page
 
   namespace :admin do
@@ -30,23 +32,18 @@ Rails.application.routes.draw do
     get 'orders/thanks', to: 'orders#thanks', as: :orders_thanks
     post 'orders/confirm', to: 'orders#confirm', as: :orders_confirm
 
+    resources :genres, only: [:show]
     resources :customers, only: [:show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :create, :index, :show]
     resources :items, only: [:index, :show]
 
-
-    patch 'customers/update', to: 'customers#update', as: :customers_update
-    get 'customers/unsubscribe', to: 'customers#unsubscribe', as: :customers_unsubscribe
-    patch 'customers/withdraw', to: 'customers#withdraw', as: :customers_withdraw
-
     get 'homes/top', to: 'homes#top', as: :homes_top
     get 'about', to: 'homes#about', as: :homes_about
 
     get 'registrations/new'
     get 'registrations/create'
-
   end
 
   devise_scope :end_user do
