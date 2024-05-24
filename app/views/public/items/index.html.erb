@@ -7,7 +7,7 @@
           <%= render 'public/items/sidebar' %>
         </div>
         <div class="col-md-9">
-          <h2>商品一覧 <span style="font-size: smaller;">(全<%= @items.count %>件)</span></h2>
+          <h2>商品一覧 <span style="font-size: smaller;">(全<%= @items_all_counter.count %>件)</span></h2>
           <div class="row">
             <% @items.each do |item| %>
               <div class="col-md-3 product-item mt-3">
