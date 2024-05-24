@@ -29,7 +29,7 @@
               <% @cart_items.each do |cart_item| %>
                 <tr id="cart_item_<%= cart_item.id %>">
                   <td class="align-middle"><%= image_tag cart_item.item.image, size: "100x100", class: "p-2 image" %> <%= cart_item.item.name %></td>
-                  <td class="align-middle text-center"><%= cart_item.item.price %></td>
+                  <td class="align-middle text-center"><%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
                   <td id="select-form" class="align-middle">
                     <%= form_with model: cart_item, url:cart_item_path(cart_item), local: true do |f| %>
                       <%= f.select :amount, *[1..10] %>
