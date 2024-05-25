@@ -4,6 +4,10 @@ class Order < ApplicationRecord
   has_many :items, through: :order_details # 注文には商品が多くある
   has_one_attached :image
 
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :name, presence: true
+
   enum status: {
      "入金待ち":0,
      "入金確認":1,

@@ -1,7 +1,12 @@
-<div class="container mt-5 mb-5">
+<div class="container pt-5 mb-5">
   <div class="row">
     <div class="col-sm-10 px-sm-0 offset-sm-1">
-      <h5>配送先編集</h5>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <h3>配送先編集</h3>
     </div>
   </div>
   <div class="row">

@@ -1,8 +1,13 @@
-<p id="notice"><% flash[:notice] %></p>
-<div class="container mt-5 mb-5">
+
+<div class="container pt-5 mb-5">
   <div class="row">
-    <div class="col-sm-2 px-sm-0 mb-4 offset-sm-1">
-      <h5 class="px-3" style="background-color: #eee;">配達先登録/一覧</h5>
+    <div class="col-sm-4 px-sm-0 mb-4 offset-sm-1">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <h3 class="px-3"><strong>配達先登録/一覧</strong></h3>
     </div>
   </div>
   <div class="row">
