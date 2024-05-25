@@ -1,1 +1,92 @@
 @use '~bootstrap/scss/bootstrap';
+
+// 全体
+
+body {
+  font-family: "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", "Hiragino Maru Gothic W4 JIS2004", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #404040;
+}
+
+h2 {
+  font-family: YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
+  font-weight: bold;
+  color: #2e0f00;
+}
+
+h3 {
+  font-family: YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
+  font-weight: bold;
+  color: #2e0f00;
+}
+h4 {
+  font-family: YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
+  font-weight: bold;
+  color: #2e0f00;
+}
+
+a {
+  color: #08001b;
+}
+
+img.header-icon {
+  border-radius: 20px;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.bg-866a54 {
+  background-color: #866a54;
+}
+// レイアウト　ヘッダー
+header {
+  color: #fffdf6;
+}
+
+.nav-item {
+  color: #fffdf6;
+}
+
+a.nav-link {
+  color: #fffdf6 !important;
+}
+
+.bg-img {
+  background-image: url("../../assets/images/header3.jpg");
+}
+
+.product-item {
+  border-radius: 10px;
+}
+
+
+/*ページネーション*/
+.page-item.active .page-link{
+  background-color: #2e0f00;
+}
+
+.page-link {
+  text-decoration: none;
+  color: #2e0f00;
+}
+
+/* 虫眼鏡のアイコンのスタイル */
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.search-icon i {
+  font-size: 16px; /* アイコンのサイズ */
+  color: #888; /* アイコンの色 */
+  cursor: pointer;
+}
+
+

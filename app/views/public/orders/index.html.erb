@@ -1,30 +1,51 @@
 <!-- 注文履歴一覧 -->
-<h3><strong>注文履歴一覧</strong></h3>
-<table>
-  <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-      <td>
-        <%= order.postal_code %>
-        <%= order.address %>
-        <%= order.name %>
-      </td>
-      <td>
-        <% order.order_details.each do |order_detail| %>
-          <%= order_detail.item.name %><br>
-        <% end %>
-      </td>
-      <td><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
-      <td><%= order.status %></td>
-      <td><%= link_to "表示する", order_path(order) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-10">
+      <div class="col-sm-3 px-sm-0 offset-sm-1">
+        <h3 class="px-4" style="background-color: #eee;"><strong>注文履歴一覧</strong></h3>
+      </div>
+      <div class="row justify-content-end">
+        <table class="table table-hover table-inverse table-bordered custom-table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" style="width:40">注文日</th>
+              <th scope="col" style="width:40">配送先</th>
+              <th scope="col" style="width:40">注文商品</th>
+              <th scope="col" style="width:40">支払金額</th>
+              <th scope="col" style="width:40">ステータス</th>
+              <th scope="col" style="width:40">注文詳細</th>
+            </tr>
+          </thead>
+          <tboby>
+            <% @orders.each do |order| %>
+              <tr>
+                <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                <td class="align-middle">
+                  〒<%= order.postal_code %>
+                  </br>
+                  <%= order.address %>
+                  </br>
+                  <%= order.name %>
+                </td>
+                <td class="align-middle">
+                  <% order.order_details.each do |order_detail| %>
+                    <%= order_detail.item.name %><br>
+                  <% end %>
+                </td>
+                <td class="align-middle"><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+                <td class="align-middle"><%= order.status %></td>
+                <td class="align-middle text-center"><%= link_to "表示する", order_path(order), :class => "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </tboby>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= paginate @orders, theme: 'bootstrap-5' %>
+</div>
+
