@@ -13,14 +13,10 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-
-      redirect_to addresses_path, notice: "登録に成功しました"
-
+      redirect_to addresses_path
     else
-      @customer = current_customer
-      @address = @customer.address
-      flash.now[:alert] = "登録に失敗しました"
-      render :index
+      flash[:alert] = "登録に失敗しました。"
+      redirect_to addresses_path
     end
 
   end
@@ -30,7 +26,8 @@ class Public::AddressesController < ApplicationController
     if @address.update(address_params)
         redirect_to addresses_path(@address)
     else
-      render :edit
+      flash[:alert] = "登録に失敗しました。"
+      redirect_to edit_address_path(@address)
     end
   end
 
