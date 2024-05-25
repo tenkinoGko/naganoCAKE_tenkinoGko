@@ -14,19 +14,4 @@
  *= require_self
  */
 /* 虫眼鏡のアイコンのスタイル */
-.search-container {
-  position: relative;
-}
 
-.search-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.search-icon i {
-  font-size: 16px; /* アイコンのサイズ */
-  color: #888; /* アイコンの色 */
-  cursor: pointer;
-}
