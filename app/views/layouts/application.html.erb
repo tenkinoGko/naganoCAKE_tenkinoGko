@@ -46,17 +46,17 @@
     <%= link_to root_path do %>
           <%= image_tag 'naganoCAKE_logo2.jpg', size: '320x64', alt: "ながのケーキのアイコン", class: "header-icon" %>
         <% end %>
-    
-    
-        
-        
+
+
+
+
     <ul class="navbar-nav ms-auto">
       <% if customer_signed_in? %>
       <li class="nav-item">
        <div class="mt-2 mr-3 text-center">
         ようこそ、<%= current_customer.first_name %>さん！
        </div>
-       </li> 
+       </li>
       <% end %>
 
       <% if admin_signed_in? %>
@@ -112,7 +112,7 @@
 
 
 
-            
+
 
 
 

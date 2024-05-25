@@ -15,4 +15,8 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true
 
+ def get_item_image(width, height)
+  image.variant(resize_to_limit: [width, height]).processed
+ end
+
 end

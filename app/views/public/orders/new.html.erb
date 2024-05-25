@@ -2,11 +2,11 @@
 <div class="container pt-5">
   <div class="row">
     <div class="col-md-8">
-    <h3>注文情報入力</h3>
+    <h3 class="col-md-4 text-center" style="background-color: #543520;">注文情報入力</h3>
 
     <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true, class: "mt-4" do |f| %>
         <div class="form-group">
-            <h5>支払い方法</h5>
+            <h5><strong>支払い方法</strong></h5>
             <div class="form-check">
                 <%= f.radio_button :payment_method, :クレジットカード, checked: true, class: "form-check-input" %>
                 <%= f.label :payment_method, "クレジットカード", class: "form-check-label" %>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-            <h5>お届け先</h5>
+            <h5><strong>お届け先</strong></h5>
             <div class="form-check">
                 <%= f.radio_button :address_option, 0, checked: true, class: "form-check-input" %>
                 <%= f.label :order_address, "ご自身の住所", class: "form-check-label" %>
@@ -39,29 +39,29 @@
 
             <div class="row mt-3">
               <div class="col text-left">
-            <div class="form-check">
-                <%= f.radio_button :address_option, 2, class: "form-check-input" %>
-                <%= f.label :order_address, "新しいお届け先", class: "form-check-label" %>
-                <div class="mt-2 ml-4">
-                    <div class="form-group">
-                         <%= f.label :addresses_post_code, "郵便番号(ハイフンなし)", class: "form-label" %>
-                          <div class="col-sm-5">
-                          <%= f.text_field :addresses_post_code, autocomplete: "addresses_post_code", placeholder: "1000005", class: "form-control" %>
-                          </div>
+                <div class="form-check">
+                    <%= f.radio_button :address_option, 2, class: "form-check-input" %>
+                    <%= f.label :order_address, "新しいお届け先", class: "form-check-label" %>
+                    <div class="mt-2 ml-4">
+                        <div class="form-group">
+                            <%= f.label :addresses_post_code, "郵便番号(ハイフンなし)", class: "form-label" %>
+                              <div class="col-sm-5">
+                                  <%= f.text_field :addresses_post_code, autocomplete: "addresses_post_code", placeholder: "1000005", class: "form-control" %>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :addresses_address, "住所", class: "form-label" %>
+                            <div class="col-sm-8">
+                            <%= f.text_field :addresses_address, autocomplete: "addresses_address", placeholder: "東京都千代田区1-1-1", class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :addresses_name, "宛名", class: "form-label" %>
+                            <div class="col-sm-5">
+                                <%= f.text_field :addresses_name, autocomplete: "addresses_name", placeholder: "令和道子", class: "form-control" %>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <%= f.label :addresses_address, "住所", class: "form-label" %>
-                        <div class="col-sm-8">
-                        <%= f.text_field :addresses_address, autocomplete: "addresses_address", placeholder: "東京都千代田区1-1-1", class: "form-control" %>
-                    </div>
-                  </div>
-                    <div class="form-group">
-                        <%= f.label :addresses_name, "宛名", class: "form-label" %>
-                        <div class="col-sm-5">
-                        <%= f.text_field :addresses_name, autocomplete: "addresses_name", placeholder: "令和道子", class: "form-control" %>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
