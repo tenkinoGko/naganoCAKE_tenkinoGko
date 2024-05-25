@@ -5,7 +5,7 @@
     </div>
   </div>
   <p>会員の方はこちらからログイン</p>
-  
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
     <div class="form-group row">
       <%= f.label :email, "メールアドレス", class: "col-sm-2 col-form-label" %>
