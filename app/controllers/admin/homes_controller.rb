@@ -1,6 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-  @customers = Customer.all
-  @orders = Order.all
+   @orders = Order.page(params[:page]).order(created_at: "DESC").per(8)
   end
 end
