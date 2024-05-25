@@ -8,11 +8,39 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      /* mainタグに背景画像を適用 */
+      main {
+        position: relative; /* オーバーレイを使用するために必要 */
+        background-image: url('<%= asset_path('about_image3.jpg') %>');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh; /* 画面全体の高さを確保 */
+      }
+
+      /* 透過オーバーレイ */
+      main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.6); /* 透明度50%の白いオーバーレイ */
+        z-index: 1; /* オーバーレイがコンテンツの後ろに来ないように */
+      }
+
+      /* コンテンツをオーバーレイの上に表示するためのスタイル */
+      main > * {
+        position: relative;
+        z-index: 2;
+      }
+    </style>
   </head>
 
   <body class="d-flex flex-column vh-100">
-
     <header>
+
       <nav class="navbar navbar-expand-lg navbar-light py-5 bg-secondary bg-img">
   <div class="container-fluid">
     <%= link_to root_path do %>
@@ -83,10 +111,10 @@
 </nav>
 
 
-  </header>
+
+            
 
 
-   
 
   <main class="mb-auto">
     <%= yield %>
@@ -98,12 +126,8 @@
     <div class='row'>
       <div class='col text-center bg-img'>
         <p class="nav-item">©️CopyRight 天気のg子.inc</p>
+
       </div>
-    </div>
-  </div>
-</footer>
-
-
-
+    </footer>
   </body>
 </html>

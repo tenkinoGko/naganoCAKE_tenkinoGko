@@ -1,2 +1,70 @@
-<h1>About</h1>
-<p>ながのCAKEは全国発送可能なケーキ屋さんです。</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About</title>
+  <style>
+    /* 追加したCSS */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <div class="newitems-title text-center">
+          <h1>About</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <p class="text-center">ながのCAKEは全国発送可能なケーキ屋さんです。<br>
+        お子様からお年寄りの方までお召し上がりいただけるよう、<br>
+        様々なバリエーションをご用意しております。<br>
+        また、全国へ発送可能ですので「いつ」でも「どこ」でもご注文いただけます。<br>
+        ぜひ注文ください。</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-center">
+        <!-- フェードアウトとフェードインを同時に実行 -->
+        <img id="mypic" src="images/about_image.jpg" width="auto" height="400" class="lazyload">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const pics_src = ["images/about_image.jpg", "images/about_image2.jpg", "images/about_image4.jpg"];
+let num = 0; // 最初の画像のインデックス
+
+function slideshow_timer(){
+  // 1. 画像をフェードアウトさせる
+  document.getElementById("mypic").classList.add("fade-out");
+
+  // 2. フェードアウト完了後、画像を切り替えてフェードインさせる
+  setTimeout(() => {
+    // 画像を切り替える
+    document.getElementById("mypic").src = pics_src[num];
+    // フェードインさせる
+    document.getElementById("mypic").classList.remove("fade-out");
+  }, 1000); // 1秒後にフェードアウトが完了する前に切り替える
+
+  // 次の画像のインデックスを更新する
+  num = (num + 1) % pics_src.length; // 画像リストの範囲内でループする
+}
+
+setInterval(slideshow_timer, 3000); // 3秒ごとにslideshow_timer()を実行
+</script>
+
+</body>
+</html>

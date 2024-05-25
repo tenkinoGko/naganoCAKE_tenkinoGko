@@ -1,39 +1,47 @@
-<div class="container-fluid">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-4">
-      <!-- ここにサイドバー -->
+    <div class="col-md-3">
+      <!--ジャンル検索-->
       <%= render 'public/items/sidebar' %>
     </div>
-    <div class="col-md-8">
-      <div class="top-box">
-        <p class="top-text">
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
-        </p>
+    <div class="col-md-9">
+      <div class="d-flex justify-content-center">
+        <div class="col-md-8">
+          <div class="top-box">
+            <p class="top-text">
+              ようこそ、ながのCAKEへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+              購入には会員登録が必要になります。
+            </p>
+          </div>
+        </div>
       </div>
-
+    </div>
+  </div>
+  <!-- ここにmargin-topクラスを追加 -->
+  <div class="row mt-10">
+    <div class="col-md-12">
       <div class="newitems-title">
         <p>新着商品</p>
       </div>
-
-      <div class="row newitems-container">
-        <% @items.first(4).each do |item| %>
-          <div class="col-md-3">
-            <div class="recommend-product">
-              <% if item.is_active %>
-               <%= link_to item_path(item) do %>
-                <img src="<%= url_for(item.image) %>" alt="<%= item.name %>" width="130" height="100">
-               <% end %>
-                <p><%= item.name %></p>
-                <p>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>(税込)</p>
-              <% end %>
+      <div class="d-flex justify-content-center">
+        <div class="row newitems-container">
+          <% @items.first(4).each do |item| %>
+            <div class="col-md-3">
+              <div class="recommend-product">
+                <% if item.is_active %>
+                  <%= link_to item_path(item) do %>
+                    <img src="<%= url_for(item.image) %>" alt="<%= item.name %>" width="130" height="100">
+                  <% end %>
+                  <p><%= item.name %></p>
+                  <p>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>(税込)</p>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-
       <div class="all-more">
         <%= link_to ">>すべての商品を見る", items_path %>
       </div>
