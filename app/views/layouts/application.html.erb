@@ -8,19 +8,55 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      /* mainタグに背景画像を適用 */
+      main {
+        position: relative; /* オーバーレイを使用するために必要 */
+        background-image: url('<%= asset_path('about_image3.jpg') %>');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh; /* 画面全体の高さを確保 */
+      }
+
+      /* 透過オーバーレイ */
+      main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.6); /* 透明度50%の白いオーバーレイ */
+        z-index: 1; /* オーバーレイがコンテンツの後ろに来ないように */
+      }
+
+      /* コンテンツをオーバーレイの上に表示するためのスタイル */
+      main > * {
+        position: relative;
+        z-index: 2;
+      }
+    </style>
   </head>
 
   <body class="d-flex flex-column vh-100">
-
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light py-5 bg-secondary">
+
+      <nav class="navbar navbar-expand-lg navbar-light py-5 bg-secondary bg-img">
   <div class="container-fluid">
-    <%= link_to "NAGANO CAKE", root_path, class: "navbar-brand" %>
+    <%= link_to root_path do %>
+          <%= image_tag 'naganoCAKE_logo2.jpg', size: '320x64', alt: "ながのケーキのアイコン", class: "header-icon" %>
+        <% end %>
+    
+    
+        
+        
     <ul class="navbar-nav ms-auto">
       <% if customer_signed_in? %>
-       <div class="mt-3 mr-5 text-black">
+      <li class="nav-item">
+       <div class="mt-2 mr-3 text-center">
         ようこそ、<%= current_customer.first_name %>さん！
        </div>
+       </li> 
       <% end %>
 
       <% if admin_signed_in? %>
@@ -75,10 +111,10 @@
 </nav>
 
 
-  </header>
+
+            
 
 
-   
 
   <main class="mb-auto">
     <%= yield %>
@@ -88,14 +124,10 @@
 <footer>
   <div class='container-fluid bg-secondary'>
     <div class='row'>
-      <div class='col text-center'>
-        <p>©️CopyRight 天気のg子.inc</p>
+      <div class='col text-center bg-img'>
+        <p class="nav-item">©️CopyRight 天気のg子.inc</p>
+
       </div>
-    </div>
-  </div>
-</footer>
-
-
-
+    </footer>
   </body>
 </html>

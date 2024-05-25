@@ -1,24 +1,33 @@
-<h2>ログイン</h2><br>
-
-<h4>会員の方はこちらからログイン</h4><br>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-2 mb-3">
+  <h2 class="mb-4 text-center" style="background-color: #543520;">ログイン</h2>
+    </div>
   </div>
+  <p>会員の方はこちらからログイン</p>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+    <div class="form-group row">
+      <%= f.label :email, "メールアドレス", class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-7">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :"パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="form-group row">
+      <%= f.label :password, "パスワード", class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-7">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+    </div>
 
+    <div class="form-group row">
+      <div class="col-sm-7 offset-sm-2">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-<br>
-
-<h4>会員登録がお済みでない方</h4>
-<%= render "public/shared/links" %>から会員登録を行なって下さい。
+  <p>会員登録がお済みでない方</p>
+  <p><a href="<%= new_registration_path(resource_name) %>">こちら</a>から新規登録を行ってください。</p>
+</div>
