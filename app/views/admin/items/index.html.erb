@@ -1,31 +1,17 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<div class="container mt-5">
+<div class="container pt-5">
   <div class="row gy-5" style="display: flex; justify-content: space-between;">
     <div class="col-md-2">
-      <h3 class="px-4" style="background-color: #eee;">商品一覧</h3>
-=======
-<div class="container mt-4">
-  <div class="row gy-5" style="display: flex; justify-content: space-between;">
-    <div class="col-md-2">
-      <h3 style="background-color: #f2f2f2; padding: 10px;">商品一覧</h3>
->>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
-=======
-<div class="container mt-5">
-  <div class="row gy-5" style="display: flex; justify-content: space-between;">
-    <div class="col-md-2">
-      <h3 class="px-4" style="background-color: #eee;">商品一覧</h3>
->>>>>>> e9de885 (管理者側view調整)
+      <h3 class="px-4" style="background-color: #543520;">商品一覧</h3>
     </div>
     <div class="col-md-1">
-      <%= link_to "＋", new_admin_item_path, class: "btn btn-lg btn-outline-light bg-light rounded-circle shadow-sm text-secondary", style: "font-size:30px;" %>
+      <%= link_to "＋", new_admin_item_path, class: "btn btn-lg text-white rounded-circle shadow-sm", style: "font-size:30px; background-color: #543520;" %>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
       <table class="table mt-4">
-        <thead class="thead-light">
+        <thead class="thead">
           <tr>
             <th>商品ID</th>
             <th>商品名</th>
@@ -40,15 +26,7 @@
             <tr>
               <td><%= item.id %></td>
               <td><%= link_to item.name, admin_item_path(item) %></td>
-<<<<<<< HEAD
-<<<<<<< HEAD
               <td><%= item.price.floor.to_s(:delimited) %></td>
-=======
-              <td><%= item.price %></td>
->>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
-=======
-              <td><%= item.price.floor.to_s(:delimited) %></td>
->>>>>>> e9de885 (管理者側view調整)
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_active == true %>
@@ -65,20 +43,7 @@
   </div>
 
   <!--ここのページネーションは見た目だけ表示してて、機能はまだありません！-->
-<<<<<<< HEAD
   <div class="d-flex justify-content-center">
     <%= paginate @items, theme: 'bootstrap-5' %>
-=======
-  <div class="container d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next &gt;</a></li>
-        <li class="page-item"><a class="page-link" href="#">Last &gt;&gt;</a></li>
-      </ul>
-    </nav>
->>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
   </div>
 </div>

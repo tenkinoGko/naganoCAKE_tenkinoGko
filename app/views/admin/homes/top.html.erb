@@ -1,32 +1,16 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e9de885 (管理者側view調整)
-<div class="container mt-5">
+<div class="container pt-5">
   <div class="row gy-5" style="display: flex; justify-content: space-between;">
     <div class="col-md-3">
-      <h3 class="px-4 text-center" style="background-color: #eee;">注文履歴一覧</h3>
+      <h3 class="px-4 text-center"style="background-color: #543520;">注文履歴一覧</h3>
     </div>
    </div>
-   
-   
+
+
     <div class="row">
      <div class="col">
       <table class="table mt-5">
-        <thead class="thead-light">
-<<<<<<< HEAD
-=======
+        <thead class="thead">
 
-<div>
-  <div>
-    <h2>注文一覧</h2>
-
-    <div>
-      <table>
-        <thead>
->>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
-=======
->>>>>>> e9de885 (管理者側view調整)
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
@@ -35,8 +19,7 @@
           </tr>
         </thead>
 
-<<<<<<< HEAD
-        
+
           <% @orders.each do |order| %>
         <tr>
           <td>
@@ -55,40 +38,16 @@
             <%= order.status_i18n %>
           </td>
         </tr>
-=======
-        <% @customers.each do |customer| %>
-          <% customer.orders.each do |order| %>
-            <tr>
-              <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order) %></td>
-              <td><%= order.customer.first_name +  order.customer.last_name %></td>
-              <td><%= order.order_details.sum(:amount) %></td>
-              <td><%= order.status %></td>
-            </tr>
-          <% end %>
->>>>>>> 64ba835 (管理:顧客詳細・商品一覧・注文履歴一覧・商品詳細編集/ジャンルソート機能実装)
         <% end %>
-       
+
       </table>
     </div>
   </div>
 </div>
 
 
-<<<<<<< HEAD
 　<div class="d-flex justify-content-center">
     <%= paginate @orders, theme: 'bootstrap-5' %>
-=======
-  <div class="container d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next &gt;</a></li>
-        <li class="page-item"><a class="page-link" href="#">Last &gt;&gt;</a></li>
-      </ul>
-    </nav>
->>>>>>> e9de885 (管理者側view調整)
   </div>
 </div>
 

@@ -1,6 +1,9 @@
-<div class="container mt-5">
-  <h2 class="mb-4">ログイン</h2>
-  
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-2 mb-3">
+  <h2 class="mb-4 text-center" style="background-color: #543520;">ログイン</h2>
+    </div>
+  </div>
   <p>会員の方はこちらからログイン</p>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
