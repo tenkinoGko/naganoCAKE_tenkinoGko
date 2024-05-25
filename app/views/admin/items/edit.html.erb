@@ -14,6 +14,13 @@
             <%= flash[:item_created_error] %>
           </div>
         <% end %>
+      
+        <h1>商品編集</h1>
+        <% if flash[:item_created_error] %>
+          <div class="alert alert-danger">
+            <%= flash[:item_created_error] %>
+          </div>
+        <% end %>
 
         <div class="form-group">
           <%= f.label :image, "画像" %>
@@ -52,8 +59,7 @@
   </div>
 </div>
 </div>
-</div>
-
+    
   <div>
     <%= f.submit "変更を保存", class: "btn btn-success mr-5" %>
   </div>
