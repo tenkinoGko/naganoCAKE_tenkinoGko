@@ -37,35 +37,52 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="d-flex justify-content-center">
+      <div>
+        
         <!-- フェードアウトとフェードインを同時に実行 -->
-        <img id="mypic" src="images/about_image.jpg" width="auto" height="500" class="lazyload">
+        <div class="d-flex justify-content-center slideshow-container">
+          <div class="slide fade">
+            <%= image_tag "about_image.jpg" %>
+          </div>
+          <div class="slide fade">
+            <%= image_tag "about_image2.jpg" %>
+          </div>
+          <div class="slide fade">
+            <%= image_tag "about_image4.jpg" %>
+          </div>
+        </div>
+        
+        
       </div>
     </div>
   </div>
 </div>
 
 <script>
-const pics_src = ["images/about_image.jpg", "images/about_image2.jpg", "images/about_image4.jpg"];
-let num = 0; // 最初の画像のインデックス
+ let slideIndex = 0;
+  showSlides();
 
-function slideshow_timer(){
-  // 1. 画像をフェードアウトさせる
-  document.getElementById("mypic").classList.add("fade-out");
-
-  // 2. フェードアウト完了後、画像を切り替えてフェードインさせる
-  setTimeout(() => {
-    // 画像を切り替える
-    document.getElementById("mypic").src = pics_src[num];
-    // フェードインさせる
-    document.getElementById("mypic").classList.remove("fade-out");
-  }, 1000); // 1秒後にフェードアウトが完了する前に切り替える
-
-  // 次の画像のインデックスを更新する
-  num = (num + 1) % pics_src.length; // 画像リストの範囲内でループする
-}
-
-setInterval(slideshow_timer, 3000); // 3秒ごとにslideshow_timer()を実行
+  function showSlides() {
+    // スライドの要素を取得
+    const slides = document.querySelectorAll(".slide.fade");
+    
+    // slideIndexを1増やす（次のスライドに進む）
+    slideIndex++;
+    
+    // スライドの数よりもslideIndexが大きくなった場合、最初のスライドに戻る
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+    
+    // 現在のスライドを表示（opacityを1に設定）
+    slides[slideIndex - 1].style.opacity = "1";
+    
+    // 1つ前のスライドを非表示（opacityを0に設定）
+    slides[slideIndex - 2 < 0 ? slides.length - 1 : slideIndex - 2].style.opacity = "0";
+    
+    // 一定時間（4000ミリ秒＝4秒）後に再度showSlides関数を呼び出す（次のスライドに進むための処理）
+    setTimeout(showSlides, 4000); 
+  }
 </script>
 
 </body>

@@ -81,6 +81,12 @@ a.nav-link {
   background-color: #c6bbb7;
 }
 
+/*ボタン*/
+.btn {
+  border-radius: 20px;
+}
+
+
 /*サイドバー*/
 .sidebar {
   border-radius: 20px;
@@ -114,4 +120,53 @@ a.nav-link {
   font-size: 16px; /* アイコンのサイズ */
   color: #888; /* アイコンの色 */
   cursor: pointer;
+}
+
+/*スライドショー*/
+.slideshow-container {
+  width: 100%;
+  height: 400px;  /* 高さを半分に */
+  overflow: hidden;
+  position: relative;
+}
+
+.slide {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* 水平方向に中央揃え */
+  align-items: center; /* 垂直方向に中央揃え */
+  position: absolute;
+  transition: opacity 1s ease-in-out; /* 切り替わる速度を1秒に設定 */
+}
+
+.slide img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.slide.fade:first-child {
+  opacity: 1;
+}
+
+.backimage .text {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.backimage .text .guidance {
+  font-size: 18px;
+  color: #fff;
+  background-color: rgba(255, 192, 203, 0.7);
+  padding: 20px;
+  border-radius: 10px;
 }

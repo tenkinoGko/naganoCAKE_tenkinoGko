@@ -3,25 +3,27 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-3">
-          <!--ジャンル検索-->
-          <%= render 'public/items/sidebar' %>
+        <!--ジャンル検索-->
+        <%= render 'public/items/sidebar' %>
         </div>
+        
         <div class="col-md-9">
-         <h2 class="px-4" style="background-color: #543520;"><%= @genre.name %>一覧 <span style="font-size: smaller;">(全<%= @items.count %>件)</span></h2>
-          <div class="row">
+          <h2 class="px-4" style="background-color: #543520;"><%= @genre.name %>一覧 <span style="font-size: smaller;">(全<%= @items.count %>件)</span></h2>
+            <div class="row">
             <% @items.each do |item| %>
-              <div class="col-md-3 product-item mt-3">
-                <%= link_to item_path(item) do %>
-                  <%= image_tag item.image, class: "img-fluid" %>
-                <% end %>
-                <p><%= link_to item.name, item_path(item) %></p>
-                <p>¥<%= item.price.floor.to_s(:delimited) %></p>
+              <div class="col-md-3 product-item border mt-3">
+              <%= link_to item_path(item) do %>
+              <p><%= image_tag item.image, style: "width: 100%; height: auto;"%></p>
+              <% end %>
+              <p><%= link_to item.name, item_path(item) %></p>
+              <p>¥<%= item.price.floor.to_s(:delimited) %></p>
               </div>
             <% end %>
-          </div>
-        <div class="container d-flex justify-content-center">
+            </div>
+            
+            <div class="container d-flex justify-content-center">
           <%= paginate @genres, theme: 'bootstrap-5' %>
-        </div>
+          </div>
         </div>
       </div>
     </div>

@@ -7,11 +7,11 @@
     <div class='row'>
         <div class='col-7 offset-1'>
           <table class='table table-bordered border-dark'>
-            <tr class="table-secondary">
-                <th>商品名</th>
-                <th>単価(税込)</th>
-                <th>数量</th>
-                <th>小計</th>
+            <tr class="table" style="background-color: #543520;">
+                <th style="color: #fffdf6;">商品名</th>
+                <th style="color: #fffdf6;">単価(税込)</th>
+                <th style="color: #fffdf6;">数量</th>
+                <th style="color: #fffdf6;">小計</th>
             </tr>
             <!--合計金額totalの初期化-->
             <% total = 0 %>
@@ -35,10 +35,10 @@
         <div class='col-3'>
             <table class="table table-bordered border-dark">
                 <% @order.shipping_cost = 800 %>
-                <tr><th class="table-secondary">送料</th><td><%= @order.shipping_cost %></td></tr>
-                <tr><th class="table-secondary">商品合計</th><td><%= total.to_i %></td></tr>
+                <tr><th class="col-4" style="color: #fffdf6; background-color: #543520;">送料</th><td><%= @order.shipping_cost %></td></tr>
+                <tr><th class="col-4" style="color: #fffdf6; background-color: #543520;">商品合計</th><td><%= total.to_i %></td></tr>
                 <% @order.total_payment = @order.shipping_cost + total.to_i %>
-                <tr><th class="table-secondary">請求金額</th><td><%= @order.total_payment %></td></tr>
+                <tr><th class="col-4" style="color: #fffdf6; background-color: #543520;">請求金額</th><td><%= @order.total_payment %></td></tr>
 
             </table>
         </div>
@@ -46,9 +46,9 @@
 
     <div class="row">
         <div class='col-7 offset-1'>
-            <table class="table table-borderless">
-                <tr><th class="col-2">支払い方法</th><td class="col-10"><%= @order.payment_method %></td></tr>
-                <tr><th class="col-2">お届け先</th><td class="col-10">
+            <table class="table table-borderless" >
+                <tr><th class="col-2" style="color: #fffdf6; background-color: #543520;">支払い方法</th><td class="col-10"><%= @order.payment_method %></td></tr>
+                <tr><th class="col-2" style="color: #fffdf6; background-color: #543520;">お届け先</th><td class="col-10">
                 〒<%= @order.postal_code %>
                 <%= @order.address %>
                 </br><%= @order.name %>

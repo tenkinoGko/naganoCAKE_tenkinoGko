@@ -141,7 +141,7 @@ item.save!
 
 item = Item.new(
   genre_id: 2,
-  name: 'おこちゃまクッキー',
+  name: 'プレーンクッキー',
   introduction: 'サクサクとした食感と甘さが特徴のクッキーです。バターとシュガーの風味が広がり、チョコチップやナッツなどのトッピングでさらなる味わいを楽しむことができます。おやつやお茶うけに最適です。',
   price: 200,
   is_active: true
@@ -184,12 +184,24 @@ item.image.attach(io: image_file, filename: 'Sample_item9.jpg', content_type: 'i
 item.save!
 
 item = Item.new(
-  genre_id: 4,  # ジャンルIDは適宜変更してください
-  name: '金インゴット200g',
-  introduction: '純金製の高級な金インゴットです。上質な純金素材を使用し、独特の光沢と重厚感があります。手のひらに収まるサイズ感で、コレクションやインテリアとしてもおすすめです。金の価値と輝きが詰まった一品です。',
-  price: 2689400,  # 価格は適宜変更してください
+  genre_id: 4,
+  name: 'いなり寿司',
+  introduction: '美味しいいなり寿司です。甘辛い味付けが特徴で、ご飯との相性も抜群です。',
+  price: 300,
   is_active: true
 )
-image_file = File.open(image_path('Sample_item10.jpg'))  # 金インゴットの写真に相当するファイルを指定してください
-item.image.attach(io: image_file, filename: 'Sample_item10.jpg', content_type: 'image/jpeg')  # 金インゴットの写真に相当するファイル名を指定してください
+image_file = File.open(image_path('Sample_item10.jpg'))
+item.image.attach(io: image_file, filename: 'Sample_item10.jpg', content_type: 'image/jpeg')
+item.save!
+
+item = Item.new(
+  genre_id: 2,  # ジャンルIDは適宜変更してください
+  name: 'シュークリーム',
+  introduction: 'ふんわりとした生地の中に、バニラ風味のクリームがたっぷり詰まったシュークリームです。サクサクとした食感と、濃厚なクリームの絶妙なバランスが特長です。おやつやデザートとして、幅広いシーンでお楽しみいただけます。',
+  price: 200,  # 価格は適宜変更してください
+  is_active: true
+)
+
+image_file = File.open(image_path('Sample_item11.jpg'))  # シュークリームの写真に相当するファイルを指定してください
+item.image.attach(io: image_file, filename: 'Sample_item11.jpg', content_type: 'image/jpeg')  # シュークリームの写真に相当するファイル名を指定してください
 item.save!
