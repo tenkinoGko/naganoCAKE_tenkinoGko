@@ -19,9 +19,9 @@ Customer.create!(
   last_name: '太郎',
   first_name_kana: 'ヤマダ',
   last_name_kana: 'タロウ',
-  postal_code: '123-4567',
+  postal_code: '1234567',
   address: '東京都渋谷区',
-  phone_number: '090-1234-5678',
+  phone_number: '09012345678',
   email: 'sample@example.com',
   password: 'password',
   password_confirmation: 'password'
@@ -32,9 +32,9 @@ Customer.create!(
   last_name: '花子',
   first_name_kana: 'サトウ',
   last_name_kana: 'ハナコ',
-  postal_code: '111-2222',
+  postal_code: '1112222',
   address: '東京都新宿区',
-  phone_number: '080-1111-2222',
+  phone_number: '08011112222',
   email: 'hanako@example.com',
   password: 'password',
   password_confirmation: 'password'
@@ -45,9 +45,9 @@ Customer.create!(
   last_name: '次郎',
   first_name_kana: 'スズキ',
   last_name_kana: 'ジロウ',
-  postal_code: '333-4444',
+  postal_code: '3334444',
   address: '東京都港区',
-  phone_number: '090-3333-4444',
+  phone_number: '09033334444',
   email: 'jiro@example.com',
   password: 'password',
   password_confirmation: 'password'
@@ -59,17 +59,17 @@ customer = Customer.find_by(id:1) #顧客のID
 customer.addresses.create!(
   address: '東京都渋谷区1-2-3',
   name: '山田太郎',
-  post_code: '123-4567'
+  post_code: '1234567'
 )
 customer.addresses.create!(
   address: '東京都新宿区4-5-6',
   name: '佐藤花子',
-  post_code: '111-2222'
+  post_code: '1112222'
 )
 customer.addresses.create!(
   address: '東京都港区7-8-9',
   name: '鈴木次郎',
-  post_code: '333-4444'
+  post_code: '3334444'
 )
 
 # ジャンルデフォルト値
