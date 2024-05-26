@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   # before_action :authenticate_admin!
   # before_action :set_product, only: %i[show edit update]
   def index
-    @items = Item.all.page(params[:page]).per(8)
+    @items = Item.all.order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def new

@@ -39,11 +39,9 @@
           <% end %>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center mt-5">
+        <%= paginate @items, theme: 'bootstrap-5' %>
+      </div>
     </div>
-  </div>
-
-  <!--ここのページネーションは見た目だけ表示してて、機能はまだありません！-->
-  <div class="d-flex justify-content-center">
-    <%= paginate @items, theme: 'bootstrap-5' %>
   </div>
 </div>

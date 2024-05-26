@@ -12,23 +12,20 @@
             <% @items.each do |item| %>
               <div class="col-md-3 product-item mt-3 border">
                 <%= link_to item_path(item) do %>
-
-                  <p><%= image_tag item.image, size: "100x100"%></p>
-
+                  <p><%= image_tag item.image, style: "width: 100%; height: auto;"%></p>
                 <% end %>
                 <p><%= link_to item.name, item_path(item) %></p>
                 <p>¥<%= item.price.floor.to_s(:delimited) %></p>
               </div>
             <% end %>
           </div>
+          <div class="d-flex justify-content-center mt-5">
+            <%= paginate @items, theme: 'bootstrap-5' %>
+          </div>
         </div>
 
 
-        <div class="d-flex justify-content-center mt-5">
 
-          <%= paginate @items, theme: 'bootstrap-5' %>
-
-        </div>
       </div>
     </div>
   </div>
