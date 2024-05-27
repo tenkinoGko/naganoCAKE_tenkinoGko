@@ -63,14 +63,14 @@ NaganoCAKEは、チーム開発練習用のECサイトです。このサイト�
 ### テスト方法
 【管理者アカウント】
 
-URLをadmin/sign_upに変更し、下記情報でログインしてください。
-メールアドレス：admin@admin
-パスワード：testtest
+URLをadmin/sign_upに変更し、下記情報でログインしてください。  
+メールアドレス：admin@admin  
+パスワード：testtest  
 
 【顧客用アカウント】
 
-メールアドレス：sample@example.com
-パスワード：password
+メールアドレス：sample@example.com  
+パスワード：password  
 
 ### 開発環境
 - フロントエンド: HTML, CSS, JavaScript
