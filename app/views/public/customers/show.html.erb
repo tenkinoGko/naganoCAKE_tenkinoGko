@@ -1,0 +1,68 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2 class="col-md-4 mb-4 text-center" style="background-color: #543520;">マイページ</h2>
+      
+      <!-- 登録情報の見出しと編集するボタンを同じ行に表示 -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-5">
+          <h3 class="mb-0 text-center" style="background-color: #543520;">登録情報</h3>
+        </div>
+        <div class="col-md-6">
+          <%= link_to '編集する', edit_customer_information_path(@customer), class: "btn btn-success" %>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr>
+            <th class="table-secondary w-25">氏名</th>
+            <td><%= @customer.first_name %> <%= @customer.last_name %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">カナ</th>
+            <td><%= @customer.first_name_kana %> <%= @customer.last_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">電話番号</th>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary">メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 配送先の見出しと一覧を見るボタンを同じ行に表示 -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-5">
+          <h3 class="mb-0 text-center" style="background-color: #543520;">配送先</h3>
+        </div>
+        <div class="col-md-6">
+          <%= link_to '一覧を見る', addresses_path, class: "btn btn-info" %>
+        </div>
+      </div>
+
+      <!-- 注文履歴の見出しと一覧を見るボタンを同じ行に表示 -->
+      <div class="row align-items-center mb-4">
+        <div class="col-md-5">
+          <h3 class="mb-0 text-center" style="background-color: #543520;">注文履歴</h3>
+        </div>
+        <div class="col-md-6">
+          <%= link_to '一覧を見る', orders_path, class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
